@@ -39,7 +39,7 @@ export default function Index() {
     const timer = setTimeout(() => {
       setCounter((prev) => (prev === 3 ? 0 : prev + 1));
     }, 800);
-    () => clearTimeout(timer)
+    () => clearTimeout(timer);
   }, [counter]);
 
   return (
@@ -55,14 +55,17 @@ export default function Index() {
           <Text style={[styles.title, styles.typographyCol]}>LUSH</Text>
           <View style={styles.enterWrapper}>
             <Text style={[styles.label, styles.typographyCol]}>enter</Text>
-            {Array.from({ length: 3 }, (_, index) => (
-              <FontAwesome
-                key={index}
-                name="angle-right"
-                size={14}
-                color={index < counter ? "white" : "transparent"}
-              />
-            ))}
+            {Array.from({ length: 3 }, (_, index) => {
+              let colors = ["#ffffff", "#ffffffbb", "#ffffff6b"];
+              return (
+                <FontAwesome
+                  key={index}
+                  name="angle-right"
+                  size={14}
+                  color={index < counter ? colors[index] : "transparent"}
+                />
+              );
+            })}
           </View>
         </View>
       </View>
