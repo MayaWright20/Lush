@@ -1,3 +1,4 @@
+import { COLORS } from "@/constants/colors";
 import {
   PADDING_HORIZONTAL_BTN,
   PADDING_VERTICAL_BTN,
@@ -15,6 +16,7 @@ interface Props {
   onPress: () => void;
   touchableOpacityStyle?: ViewStyle;
   textStyle?: TextStyle;
+  isDisabled?: boolean;
 }
 
 export default function CTA({
@@ -22,11 +24,17 @@ export default function CTA({
   onPress,
   touchableOpacityStyle,
   textStyle,
+  isDisabled,
 }: Props) {
   return (
     <TouchableOpacity
-      style={[styles.container, touchableOpacityStyle]}
+      style={[
+        styles.container,
+        touchableOpacityStyle,
+        { backgroundColor: isDisabled ? COLORS.GREY_LIGHT : "black" },
+      ]}
       onPress={onPress}
+      disabled={isDisabled}
     >
       <Text style={[styles.title, textStyle]}>{title}</Text>
     </TouchableOpacity>
@@ -35,7 +43,6 @@ export default function CTA({
 
 const styles = StyleSheet.create({
   container: {
-    backgroundColor: "black",
     borderRadius: 100,
     paddingHorizontal: PADDING_HORIZONTAL_BTN,
     paddingVertical: PADDING_VERTICAL_BTN,
