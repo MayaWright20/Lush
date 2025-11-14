@@ -1,15 +1,30 @@
-import { StyleSheet, Text, TouchableOpacity, ViewStyle } from "react-native";
+import {
+  StyleSheet,
+  Text,
+  TextStyle,
+  TouchableOpacity,
+  ViewStyle,
+} from "react-native";
 
 interface Props {
   title: string;
   onPress: () => void;
-  style: ViewStyle;
+  touchableOpacityStyle?: ViewStyle;
+  textStyle?: TextStyle;
 }
 
-export default function CTA({ title, onPress, style }: Props) {
+export default function CTA({
+  title,
+  onPress,
+  touchableOpacityStyle,
+  textStyle,
+}: Props) {
   return (
-    <TouchableOpacity style={[styles.container, style]} onPress={onPress}>
-      <Text style={styles.title}>{title}</Text>
+    <TouchableOpacity
+      style={[styles.container, touchableOpacityStyle]}
+      onPress={onPress}
+    >
+      <Text style={[styles.title, textStyle]}>{title}</Text>
     </TouchableOpacity>
   );
 }
