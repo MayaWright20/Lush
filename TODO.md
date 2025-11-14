@@ -1,4 +1,4 @@
-- border around the profile page
+TODO:
 - touchable feedback on buttons  - haptics
 - icons from fat to slim
 - Make profile screen checker board like lush app
@@ -9,8 +9,12 @@
 - app icon
 - light sensor on the home screen so video is never too dark
 - checker board whats your name page
+- Add validation in text-input
 
 
 - display all products 
 - filter / search 
 - favourites
+
+DONE:
+- border around the profile page

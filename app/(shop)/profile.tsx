@@ -6,7 +6,7 @@ import { StyleSheet, Text } from "react-native";
 import { SafeAreaView } from "react-native-safe-area-context";
 
 export default function Profile() {
-  const { logout } = useProfile();
+  const { logout, userName } = useProfile();
 
   return (
     <LinearBackground
@@ -14,17 +14,14 @@ export default function Profile() {
       colors={["#ffffff", "#ffffff", "#ffffff", "#fae8f6"]}
     >
       <SafeAreaView style={styles.safeAreaView}>
-        <Text style={styles.title}>My Profile</Text>
-        <CTA style={styles.cta} title={"Logout"} onPress={logout} />
+        <Text style={styles.title}>{`Hi ${userName}`}</Text>
+        <CTA title={"Logout"} onPress={logout} />
       </SafeAreaView>
     </LinearBackground>
   );
 }
 
 const styles = StyleSheet.create({
-  cta: {
-    width: "100%",
-  },
   linearBackground: {
     padding: PADDING_HORIZONTAL_PAGE,
   },
