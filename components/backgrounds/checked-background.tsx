@@ -1,3 +1,4 @@
+import { COLORS } from "@/constants/colors";
 import React from "react";
 import { Dimensions, StyleSheet, View } from "react-native";
 
@@ -12,15 +13,14 @@ interface Props {
 
 export default function CheckedBackground({
   squareSize = 25,
-  color1 = "#f2f2f2",
-  color2 = "#e0e0e0",
+  color1 = COLORS.GREY_LIGHT,
+  color2 = COLORS.GREY,
   children,
 }: Props) {
   const columns = Math.ceil(width / squareSize);
   const rows = Math.ceil(height / squareSize);
   const squareWidth = squareSize;
   const squareHeight = squareSize;
-
   const totalSquares = rows * columns;
 
   return (

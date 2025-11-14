@@ -4,4 +4,6 @@ export const COLORS = {
   PINK: "#ebc2ea",
   PURPLE: "#c2c4eb",
   BLUE: "#c2deeb",
+  GREY_LIGHT: "#f2f2f2",
+  GREY: "#e0e0e0",
 };
