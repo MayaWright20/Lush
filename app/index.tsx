@@ -1,8 +1,9 @@
 import { COLORS } from "@/constants/colors";
 import FontAwesome from "@expo/vector-icons/FontAwesome";
+import { router } from "expo-router";
 import { useVideoPlayer, VideoView } from "expo-video";
 import { useEffect, useRef, useState } from "react";
-import { StyleSheet, Text, View } from "react-native";
+import { Pressable, StyleSheet, Text, View } from "react-native";
 
 const videoSource = require("../assets/videos/lush.mp4");
 
@@ -42,6 +43,10 @@ export default function Index() {
     () => clearTimeout(timer);
   }, [counter]);
 
+  const navigateToShop = () => {
+    router.navigate("/shop")
+  }
+
   return (
     <>
       <VideoView
@@ -53,7 +58,7 @@ export default function Index() {
       <View style={styles.overlay}>
         <View>
           <Text style={[styles.title, styles.typographyCol]}>LUSH</Text>
-          <View style={styles.enterWrapper}>
+          <Pressable onPress={navigateToShop} style={styles.enterWrapper}>
             <Text style={[styles.label, styles.typographyCol]}>enter</Text>
             {Array.from({ length: 3 }, (_, index) => {
               let colors = ["#ffffff", "#ffffffbb", "#ffffff6b"];
@@ -66,7 +71,7 @@ export default function Index() {
                 />
               );
             })}
-          </View>
+          </Pressable>
         </View>
       </View>
     </>

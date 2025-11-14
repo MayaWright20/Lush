@@ -1,0 +1,10 @@
+- border around the profile page
+- touchable feedback on buttons 
+- icons from fat to slim
+- Make profile screen checker board like lush app
+- favourites screen should have red icon heart the rest shouldnt be red
+- Search
+- Animations
+- splash screen 
+- app icon
+- light sensor on the home screen so video is never too dark
