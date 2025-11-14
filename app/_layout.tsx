@@ -16,13 +16,20 @@ export default function RootLayout() {
             animation: "flip",
           }}
         />
+        <Stack.Screen
+          name="auth"
+          options={{
+            headerShown: false,
+            animation: "slide_from_right",
+          }}
+        />
       </Stack.Protected>
       <Stack.Protected guard={!!sessionToken}>
         <Stack.Screen
           name="(shop)"
           options={{
             headerShown: false,
-            animation: "slide_from_left",
+            animation: "slide_from_bottom",
           }}
         />
       </Stack.Protected>
