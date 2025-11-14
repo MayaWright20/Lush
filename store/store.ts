@@ -1,11 +1,13 @@
-import { create } from 'zustand';
-import { createJSONStorage, persist } from 'zustand/middleware';
+import { create } from "zustand";
+import { createJSONStorage, persist } from "zustand/middleware";
 
-import AsyncStorage from '@react-native-async-storage/async-storage';
+import AsyncStorage from "@react-native-async-storage/async-storage";
 
 export interface PersistStoreState {
   sessionToken: string | null;
   setSessionToken: (sessionToken: string | null) => void;
+  userName: string | undefined;
+  setUserName: (userName: string) => void;
 }
 
 const sessionStorage = {
@@ -29,9 +31,11 @@ export const usePersistStore = create<PersistStoreState>()(
     (set, get) => ({
       sessionToken: null,
       setSessionToken: (sessionToken: string | null) => set({ sessionToken }),
+      userName: undefined,
+      setUserName: (userName: string) => set({ userName }),
     }),
     {
-      name: 'session',
+      name: "session",
       storage: createJSONStorage(() => sessionStorage),
     },
   ),

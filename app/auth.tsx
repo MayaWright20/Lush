@@ -9,7 +9,7 @@ import { KeyboardAvoidingView, Platform, StyleSheet } from "react-native";
 import { SafeAreaView } from "react-native-safe-area-context";
 
 export default function AuthScreen() {
-  const { login } = useProfile();
+  const { login, setUserName } = useProfile();
 
   const navigateBack = () => {
     router.back();
@@ -31,14 +31,14 @@ export default function AuthScreen() {
           <AnimatedTextInput
             label={"Name"}
             color="black"
-            onChangeText={() => console.log("hello")}
+            onChangeText={(value) => setUserName(value)}
             containerStyle={styles.animatedTextInputContainer}
             placeholder="What is your name?"
           />
           <CTA
             touchableOpacityStyle={styles.loginBtn}
             title={"Login"}
-            onPress={login}
+            onPress={() => login()}
           />
         </KeyboardAvoidingView>
       </SafeAreaView>
@@ -58,7 +58,7 @@ const styles = StyleSheet.create({
     color: "black",
   },
   backCtaTitle: {
-    color: "black",
+    color: "white",
   },
   loginBtn: {
     alignSelf: "flex-end",
