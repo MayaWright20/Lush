@@ -1,0 +1,196 @@
+import {
+    Pressable,
+    StyleSheet,
+    Text,
+    TextInput,
+    ViewStyle,
+} from "react-native";
+
+import { COLORS } from "@/constants/colors";
+import { useCallback, useEffect, useState } from "react";
+import Animated, {
+    useAnimatedStyle,
+    useSharedValue,
+    withTiming,
+} from "react-native-reanimated";
+
+const ANIMATION_DURATION = 600;
+
+const TRANSLATE_Y_ANIMATED = -1;
+const FONT_SIZE_ANIMATED = 10;
+const TRANSLATE_X_ANIMATED = 20;
+const LABEL_PADDING_ANIMATED = 0;
+
+const TRANSLATE_Y_NOT_ANIMATED = 9.5;
+const FONT_SIZE_NOT_ANIMATED = 14;
+const TRANSLATE_X_NOT_ANIMATED = 5;
+const LABEL_PADDING_NOT_ANIMATED = 10;
+
+type AutoCapitalize = "none" | "sentences" | "words" | "characters";
+
+interface Props {
+  backgroundColor?: string;
+  color?: string;
+  label: string;
+  value?: string;
+  onChangeText: (input: string) => void;
+  autoCapitalize?: AutoCapitalize;
+  errorMessage?: string;
+  showErrorMessage?: boolean;
+  textInputBgCol?: string;
+  containerStyle?: ViewStyle;
+  placeholder?: string;
+}
+
+export default function AnimatedTextInput({
+  backgroundColor = COLORS.BLUE,
+  color = "white",
+  label,
+  value,
+  onChangeText,
+  autoCapitalize,
+  errorMessage,
+  showErrorMessage,
+  textInputBgCol = COLORS.GREY_LIGHT,
+  containerStyle,
+  placeholder,
+}: Props) {
+  const [isAnimated, setIsAnimated] = useState<boolean>(false);
+
+  const translateY = useSharedValue(TRANSLATE_Y_NOT_ANIMATED);
+  const translateX = useSharedValue(TRANSLATE_X_NOT_ANIMATED);
+  const labelPadding = useSharedValue(LABEL_PADDING_NOT_ANIMATED);
+  const fontSize = useSharedValue(FONT_SIZE_NOT_ANIMATED);
+
+  const updateAnimations = useCallback(
+    (toggled: boolean) => {
+      translateY.value = withTiming(
+        toggled ? TRANSLATE_Y_ANIMATED : TRANSLATE_Y_NOT_ANIMATED,
+        {
+          duration: ANIMATION_DURATION,
+        },
+      );
+      translateX.value = withTiming(
+        toggled ? TRANSLATE_X_ANIMATED : TRANSLATE_X_NOT_ANIMATED,
+        {
+          duration: ANIMATION_DURATION,
+        },
+      );
+      labelPadding.value = withTiming(
+        toggled ? LABEL_PADDING_ANIMATED : LABEL_PADDING_NOT_ANIMATED,
+        {
+          duration: ANIMATION_DURATION,
+        },
+      );
+
+      fontSize.value = withTiming(
+        toggled ? FONT_SIZE_ANIMATED : FONT_SIZE_NOT_ANIMATED,
+        {
+          duration: ANIMATION_DURATION,
+        },
+      );
+    },
+    [translateY, translateX, labelPadding, fontSize],
+  );
+
+  const animatedLabelWrapperStyle = useAnimatedStyle(() => ({
+    transform: [
+      { translateY: translateY.value },
+      { translateX: translateX.value },
+    ],
+    padding: labelPadding.value,
+  }));
+
+  const animatedTextStyle = useAnimatedStyle(() => ({
+    fontSize: fontSize.value,
+  }));
+
+  const onChangeTextHandler = (input: string) => {
+    onChangeText(input.trim());
+  };
+
+  const setIsAnimatingHandler = (showAnimation: boolean) => {
+    setIsAnimated(showAnimation);
+  };
+
+  useEffect(() => {
+    updateAnimations(isAnimated);
+  }, [isAnimated, updateAnimations]);
+
+  return (
+    <Pressable
+      style={containerStyle}
+      onPress={() => setIsAnimatingHandler(true)}
+    >
+      <TextInput
+        value={value}
+        onChangeText={onChangeTextHandler}
+        style={[styles.textInput, { color, backgroundColor: textInputBgCol }]}
+        autoCapitalize={autoCapitalize}
+        cursorColor={backgroundColor}
+        onPress={() => setIsAnimatingHandler(true)}
+        placeholder={isAnimated ? undefined : placeholder}
+        textAlign={isAnimated ? "left" : "right"}
+      />
+      <Animated.View
+        style={[
+          styles.labelWrapper,
+          {
+            borderColor: color,
+            backgroundColor,
+          },
+          animatedLabelWrapperStyle,
+        ]}
+      >
+        <Animated.Text
+          style={[
+            {
+              color,
+              fontWeight: isAnimated ? "bold" : "500",
+            },
+            styles.label,
+            animatedTextStyle,
+          ]}
+        >
+          {label}
+        </Animated.Text>
+      </Animated.View>
+      {showErrorMessage && (
+        <Text style={[styles.errorLabel, { color }]}>{`${errorMessage}`}</Text>
+      )}
+    </Pressable>
+  );
+}
+
+const styles = StyleSheet.create({
+  errorLabel: {
+    fontSize: 12,
+    marginBottom: 2,
+    marginRight: 20,
+    textAlign: "right",
+  },
+  label: {
+    paddingHorizontal: 5,
+    textTransform: "capitalize",
+  },
+  labelWrapper: {
+    alignItems: "center",
+    borderRadius: 100,
+    borderWidth: 1,
+    flexDirection: "row",
+    marginBottom: 10,
+    overflow: "hidden",
+    position: "absolute",
+  },
+  textInput: {
+    backgroundColor: "white",
+    borderRadius: 50,
+    borderWidth: 1,
+    flexDirection: "row",
+    marginBottom: 5,
+    marginVertical: 5,
+    paddingHorizontal: 25,
+    paddingVertical: 15,
+    position: "relative",
+  },
+});
