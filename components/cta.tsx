@@ -1,4 +1,8 @@
 import {
+  PADDING_HORIZONTAL_BTN,
+  PADDING_VERTICAL_BTN,
+} from "@/constants/styles";
+import {
   StyleSheet,
   Text,
   TextStyle,
@@ -33,8 +37,8 @@ const styles = StyleSheet.create({
   container: {
     backgroundColor: "black",
     borderRadius: 100,
-    paddingHorizontal: 5,
-    paddingVertical: 15,
+    paddingHorizontal: PADDING_HORIZONTAL_BTN,
+    paddingVertical: PADDING_VERTICAL_BTN,
   },
   title: {
     color: "white",
