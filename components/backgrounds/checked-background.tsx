@@ -4,25 +4,27 @@ import { Dimensions, StyleSheet, View } from "react-native";
 const { width, height } = Dimensions.get("window");
 
 interface Props {
-  rows: number;
-  columns: number;
-  color1: string;
-  color2: string;
+  squareSize?: number;
+  color1?: string;
+  color2?: string;
+  children?: React.ReactNode;
 }
 
 export default function CheckedBackground({
-  rows = 12,
-  columns = 8,
+  squareSize = 25,
   color1 = "#f2f2f2",
   color2 = "#e0e0e0",
+  children,
 }: Props) {
-  const squareWidth = width / columns;
-  const squareHeight = height / rows;
+  const columns = Math.ceil(width / squareSize);
+  const rows = Math.ceil(height / squareSize);
+  const squareWidth = squareSize;
+  const squareHeight = squareSize;
 
   const totalSquares = rows * columns;
 
   return (
-    <View pointerEvents="none" style={StyleSheet.absoluteFill}>
+    <View style={StyleSheet.absoluteFill}>
       {Array.from({ length: totalSquares }).map((_, index) => {
         const row = Math.floor(index / columns);
         const col = index % columns;
@@ -42,6 +44,7 @@ export default function CheckedBackground({
           />
         );
       })}
+      {children}
     </View>
   );
 }
