@@ -1,5 +1,5 @@
-import LinearBackground from "@/components/background-screen";
 import CTA from "@/components/cta";
+import LinearBackground from "@/components/linear-background";
 import { PAGE_HORIZONTAL_PADDING } from "@/constants/styles";
 import useProfile from "@/hooks/useProfile";
 import { StyleSheet, Text } from "react-native";
