@@ -1,5 +1,5 @@
 - border around the profile page
-- touchable feedback on buttons 
+- touchable feedback on buttons  - haptics
 - icons from fat to slim
 - Make profile screen checker board like lush app
 - favourites screen should have red icon heart the rest shouldnt be red
@@ -8,3 +8,9 @@
 - splash screen 
 - app icon
 - light sensor on the home screen so video is never too dark
+- checker board whats your name page
+
+
+- display all products 
+- filter / search 
+- favourites
