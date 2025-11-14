@@ -43,6 +43,7 @@ export default function CTA({
 
 const styles = StyleSheet.create({
   container: {
+    backgroundColor: "black",
     borderRadius: 100,
     paddingHorizontal: PADDING_HORIZONTAL_BTN,
     paddingVertical: PADDING_VERTICAL_BTN,
