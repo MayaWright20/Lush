@@ -1,1 +1,1 @@
-export const PAGE_HORIZONTAL_PADDING = 5;
+export const PADDING_HORIZONTAL_PAGE = 5;

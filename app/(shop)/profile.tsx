@@ -1,6 +1,6 @@
 import LinearBackground from "@/components/backgrounds/linear-background";
 import CTA from "@/components/cta";
-import { PAGE_HORIZONTAL_PADDING } from "@/constants/styles";
+import { PADDING_HORIZONTAL_PAGE } from "@/constants/styles";
 import useProfile from "@/hooks/useProfile";
 import { StyleSheet, Text } from "react-native";
 import { SafeAreaView } from "react-native-safe-area-context";
@@ -26,7 +26,7 @@ const styles = StyleSheet.create({
     width: "100%",
   },
   linearBackground: {
-    padding: PAGE_HORIZONTAL_PADDING,
+    padding: PADDING_HORIZONTAL_PAGE,
   },
   safeAreaView: {
     flex: 1,
