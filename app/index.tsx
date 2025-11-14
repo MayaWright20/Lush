@@ -42,7 +42,7 @@ export default function Index() {
     const timer = setTimeout(() => {
       setCounter((prev) => (prev === 3 ? 0 : prev + 1));
     }, 800);
-    () => clearTimeout(timer);
+    return () => clearTimeout(timer);
   }, [counter]);
 
   return (
