@@ -9,7 +9,10 @@ export default function Profile() {
   const { logout } = useProfile();
 
   return (
-    <LinearBackground style={styles.linearBackground} colors={["#ffffff", "#ffffff", "#ffffff", "#fae8f6"]}>
+    <LinearBackground
+      style={styles.linearBackground}
+      colors={["#ffffff", "#ffffff", "#ffffff", "#fae8f6"]}
+    >
       <SafeAreaView style={styles.safeAreaView}>
         <Text style={styles.title}>My Profile</Text>
         <CTA style={styles.cta} title={"Logout"} onPress={logout} />
@@ -19,6 +22,9 @@ export default function Profile() {
 }
 
 const styles = StyleSheet.create({
+  cta: {
+    width: "100%",
+  },
   linearBackground: {
     padding: PAGE_HORIZONTAL_PADDING,
   },
@@ -27,11 +33,8 @@ const styles = StyleSheet.create({
   },
   title: {
     fontSize: 30,
-    textAlign: "center",
     fontWeight: "600",
-    marginBottom: '80%'
+    marginBottom: "80%",
+    textAlign: "center",
   },
-  cta: {
-    width: '100%',
-  }
 });

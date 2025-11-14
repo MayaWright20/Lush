@@ -10,7 +10,7 @@ const videoSource = require("../assets/videos/lush.mp4");
 export default function Index() {
   const isReversed = useRef(false);
 
-  const {login} = useProfile()
+  const { login } = useProfile();
 
   const [counter, setCounter] = useState(0);
 
@@ -77,32 +77,32 @@ export default function Index() {
 }
 
 const styles = StyleSheet.create({
-  video: {
-    ...StyleSheet.absoluteFillObject,
+  enterWrapper: {
+    alignItems: "center",
+    alignSelf: "flex-end",
+    flexDirection: "row",
+  },
+  icon: {
+    marginLeft: 5,
+  },
+  label: {
+    marginRight: 5,
+    textTransform: "capitalize",
   },
   overlay: {
+    alignItems: "center",
     backgroundColor: COLORS.OVERLAY_DARK,
     flex: 1,
-    alignItems: "center",
     justifyContent: "center",
-  },
-  typographyCol: {
-    color: "white",
   },
   title: {
     fontSize: 100,
     fontWeight: "900",
   },
-  label: {
-    textTransform: "capitalize",
-    marginRight: 5,
+  typographyCol: {
+    color: "white",
   },
-  icon: {
-    marginLeft: 5,
-  },
-  enterWrapper: {
-    alignSelf: "flex-end",
-    flexDirection: "row",
-    alignItems: "center",
+  video: {
+    ...StyleSheet.absoluteFillObject,
   },
 });

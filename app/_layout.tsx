@@ -2,7 +2,9 @@ import { PersistStoreState, usePersistStore } from "@/store/store";
 import { Stack } from "expo-router";
 
 export default function RootLayout() {
-  const sessionToken = usePersistStore((state: PersistStoreState) => state.sessionToken);
+  const sessionToken = usePersistStore(
+    (state: PersistStoreState) => state.sessionToken,
+  );
 
   return (
     <Stack screenOptions={{ headerShown: false }}>

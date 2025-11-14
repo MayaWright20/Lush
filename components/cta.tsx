@@ -1,9 +1,9 @@
 import { StyleSheet, Text, TouchableOpacity, ViewStyle } from "react-native";
 
 interface Props {
-  title: string; 
+  title: string;
   onPress: () => void;
-  style: ViewStyle
+  style: ViewStyle;
 }
 
 export default function CTA({ title, onPress, style }: Props) {
@@ -23,8 +23,8 @@ const styles = StyleSheet.create({
   },
   title: {
     color: "white",
-    textAlign: "center",
-    fontWeight: "bold",
     fontSize: 18,
+    fontWeight: "bold",
+    textAlign: "center",
   },
 });
