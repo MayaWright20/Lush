@@ -28,7 +28,13 @@ export default function LinearBackground({
       locations={locations}
       start={start}
       end={end}
-      style={[style, { flex: isFullScreen ? 1 : undefined }]}
+      style={[
+        style,
+        {
+          position: isFullScreen ? "relative" : "absolute",
+          flex: isFullScreen ? 1 : undefined,
+        },
+      ]}
     >
       {children}
     </LinearGradient>
