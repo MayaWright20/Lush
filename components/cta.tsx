@@ -31,12 +31,24 @@ export default function CTA({
       style={[
         styles.container,
         touchableOpacityStyle,
-        { backgroundColor: isDisabled ? COLORS.GREY_LIGHT : "black" },
+        {
+          backgroundColor: isDisabled ? COLORS.GREY_LIGHT : "black",
+          borderColor: isDisabled ? COLORS.GREY : undefined,
+          borderWidth: isDisabled ? 1 : 0,
+        },
       ]}
       onPress={onPress}
       disabled={isDisabled}
     >
-      <Text style={[styles.title, textStyle]}>{title}</Text>
+      <Text
+        style={[
+          styles.title,
+          textStyle,
+          { color: isDisabled ? COLORS.GREY : "white" },
+        ]}
+      >
+        {title}
+      </Text>
     </TouchableOpacity>
   );
 }
