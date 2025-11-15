@@ -5,6 +5,10 @@ export default function useProfile() {
     (state: PersistStoreState) => state.setSessionToken,
   );
 
+  const clearStore = usePersistStore(
+    (state: PersistStoreState) => state.clearStore,
+  );
+
   const setUserName = usePersistStore(
     (state: PersistStoreState) => state.setUserName,
   );
@@ -22,7 +26,7 @@ export default function useProfile() {
   };
 
   const logout = () => {
-    setSessionToken(null);
+    clearStore();
   };
 
   return {
