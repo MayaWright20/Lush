@@ -1,6 +1,6 @@
 import {
-    PermanentMarker_400Regular,
-    useFonts,
+  PermanentMarker_400Regular,
+  useFonts,
 } from "@expo-google-fonts/permanent-marker";
 import React from "react";
 import { StyleSheet, Text, TextProps } from "react-native";
