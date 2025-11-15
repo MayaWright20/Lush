@@ -8,6 +8,7 @@ export interface PersistStoreState {
   setSessionToken: (sessionToken: string | null) => void;
   userName: string | undefined;
   setUserName: (userName: string) => void;
+  clearStore: () => Promise<void>;
 }
 
 const sessionStorage = {
@@ -33,6 +34,13 @@ export const usePersistStore = create<PersistStoreState>()(
       setSessionToken: (sessionToken: string | null) => set({ sessionToken }),
       userName: undefined,
       setUserName: (userName: string) => set({ userName }),
+      clearStore: async () => {
+        await sessionStorage.clearStore();
+        set({
+          sessionToken: null,
+          userName: undefined,
+        });
+      },
     }),
     {
       name: "session",
