@@ -10,6 +10,7 @@ export default function Profile() {
 
   return (
     <LinearBackground
+      isFullScreen
       style={styles.linearBackground}
       colors={["#ffffff", "#ffffff", "#ffffff", "#fae8f6"]}
     >
