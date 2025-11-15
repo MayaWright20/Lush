@@ -2,17 +2,35 @@ import AnimatedTextInput from "@/components/animated-text-input";
 import CheckedBackground from "@/components/backgrounds/checked-background";
 import CTA from "@/components/cta";
 import { COLORS } from "@/constants/colors";
+import { NAME_VALIDATOR } from "@/constants/regex";
 import { PADDING_HORIZONTAL_PAGE } from "@/constants/styles";
 import useProfile from "@/hooks/useProfile";
+import { isRegexValid, regexErrorMessage } from "@/utils/regex-validators";
 import { router } from "expo-router";
+import { useState } from "react";
 import { KeyboardAvoidingView, Platform, StyleSheet } from "react-native";
 import { SafeAreaView } from "react-native-safe-area-context";
 
 export default function AuthScreen() {
   const { login, setUserName, userName } = useProfile();
+  const [showErrorMessage, setShowErrorMessage] = useState(false);
 
   const navigateBack = () => {
     router.back();
+  };
+
+  const authenticationHandler = () => {
+    if (!userName) return;
+    if (isRegexValid(NAME_VALIDATOR, userName)) {
+      login();
+    } else {
+      setShowErrorMessage(true);
+    }
+  };
+
+  const onChangeText = (value: string) => {
+    setShowErrorMessage(false);
+    setUserName(value);
   };
 
   return (
@@ -31,14 +49,16 @@ export default function AuthScreen() {
           <AnimatedTextInput
             label={"Name"}
             color="black"
-            onChangeText={(value) => setUserName(value)}
+            onChangeText={(value) => onChangeText(value)}
             containerStyle={styles.animatedTextInputContainer}
             placeholder="What is your name?"
+            showErrorMessage={showErrorMessage}
+            errorMessage={regexErrorMessage(NAME_VALIDATOR)}
           />
           <CTA
             touchableOpacityStyle={styles.loginBtn}
             title={"Login"}
-            onPress={() => login()}
+            onPress={() => authenticationHandler()}
             isDisabled={userName?.trim() === "" || userName === undefined}
           />
         </KeyboardAvoidingView>
