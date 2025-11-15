@@ -1,17 +1,17 @@
 import {
-    Pressable,
-    StyleSheet,
-    Text,
-    TextInput,
-    ViewStyle,
+  Pressable,
+  StyleSheet,
+  Text,
+  TextInput,
+  ViewStyle,
 } from "react-native";
 
 import { COLORS } from "@/constants/colors";
-import { useCallback, useEffect, useState } from "react";
+import { useCallback, useEffect, useRef, useState } from "react";
 import Animated, {
-    useAnimatedStyle,
-    useSharedValue,
-    withTiming,
+  useAnimatedStyle,
+  useSharedValue,
+  withTiming,
 } from "react-native-reanimated";
 
 const ANIMATION_DURATION = 600;
@@ -55,6 +55,8 @@ export default function AnimatedTextInput({
   containerStyle,
   placeholder,
 }: Props) {
+  const inputRef = useRef<TextInput>(null);
+
   const [isAnimated, setIsAnimated] = useState<boolean>(false);
 
   const translateY = useSharedValue(TRANSLATE_Y_NOT_ANIMATED);
@@ -110,6 +112,9 @@ export default function AnimatedTextInput({
   };
 
   const setIsAnimatingHandler = (showAnimation: boolean) => {
+    if (showAnimation) {
+      inputRef.current?.focus();
+    }
     setIsAnimated(showAnimation);
   };
 
@@ -117,12 +122,19 @@ export default function AnimatedTextInput({
     updateAnimations(isAnimated);
   }, [isAnimated, updateAnimations]);
 
+  const onBlur = () => {
+    if (value?.trim() === "" || value === undefined) {
+      setIsAnimatingHandler(false);
+    }
+  };
+
   return (
     <Pressable
       style={containerStyle}
       onPress={() => setIsAnimatingHandler(true)}
     >
       <TextInput
+        ref={inputRef}
         value={value}
         onChangeText={onChangeTextHandler}
         style={[styles.textInput, { color, backgroundColor: textInputBgCol }]}
@@ -131,6 +143,7 @@ export default function AnimatedTextInput({
         onPress={() => setIsAnimatingHandler(true)}
         placeholder={isAnimated ? undefined : placeholder}
         textAlign={isAnimated ? "left" : "right"}
+        onBlur={onBlur}
       />
       <Animated.View
         style={[
