@@ -1,7 +1,18 @@
 import Ionicons from "@expo/vector-icons/Ionicons";
 import { Tabs } from "expo-router";
+import { useEffect } from "react";
 
-export default function RootLayout() {
+import { StoreState, useStore } from "@/store/store";
+
+import { data } from "../../data/task_mock_data.json";
+
+export default function Layout() {
+  const setProducts = useStore((state: StoreState) => state.setProducts);
+
+  useEffect(() => {
+    if (!data) return;
+    setProducts(data);
+  }, [setProducts]);
   return (
     <Tabs
       screenOptions={{
