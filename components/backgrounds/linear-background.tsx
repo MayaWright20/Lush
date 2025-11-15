@@ -1,23 +1,26 @@
+import { COLORS } from "@/constants/colors";
 import { LinearGradient, LinearGradientProps } from "expo-linear-gradient";
 import React from "react";
-import { ColorValue, StyleSheet } from "react-native";
+import { ColorValue } from "react-native";
 
 interface LinearBackgroundProps {
-  colors: readonly [ColorValue, ColorValue, ...ColorValue[]];
+  colors?: readonly [ColorValue, ColorValue, ...ColorValue[]];
   locations?: readonly [number, number, ...number[]] | null;
   start?: { x: number; y: number };
   end?: { x: number; y: number };
   children?: React.ReactNode;
   style?: LinearGradientProps["style"];
+  isFullScreen?: boolean;
 }
 
 export default function LinearBackground({
-  colors,
+  colors = ["white", COLORS.PINK],
   locations,
   start = { x: 0, y: 0 },
   end = { x: 0, y: 1 },
   children,
   style,
+  isFullScreen,
 }: LinearBackgroundProps) {
   return (
     <LinearGradient
@@ -25,15 +28,9 @@ export default function LinearBackground({
       locations={locations}
       start={start}
       end={end}
-      style={[styles.background, style]}
+      style={[style, { flex: isFullScreen ? 1 : undefined }]}
     >
       {children}
     </LinearGradient>
   );
 }
-
-const styles = StyleSheet.create({
-  background: {
-    flex: 1,
-  },
-});
