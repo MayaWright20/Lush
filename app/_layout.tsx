@@ -1,5 +1,6 @@
-import { PersistStoreState, usePersistStore } from "@/store/store";
 import { Stack } from "expo-router";
+
+import { PersistStoreState, usePersistStore } from "@/store/store";
 
 export default function RootLayout() {
   const sessionToken = usePersistStore(

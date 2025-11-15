@@ -1,9 +1,10 @@
-import { COLORS } from "@/constants/colors";
 import FontAwesome from "@expo/vector-icons/FontAwesome";
 import { router } from "expo-router";
 import { useVideoPlayer, VideoView } from "expo-video";
 import { useEffect, useRef, useState } from "react";
 import { Pressable, StyleSheet, Text, View } from "react-native";
+
+import { COLORS } from "@/constants/colors";
 
 const videoSource = require("../assets/videos/lush.mp4");
 

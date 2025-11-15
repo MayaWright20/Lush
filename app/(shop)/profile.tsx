@@ -1,9 +1,10 @@
+import { StyleSheet, Text } from "react-native";
+import { SafeAreaView } from "react-native-safe-area-context";
+
 import LinearBackground from "@/components/backgrounds/linear-background";
 import CTA from "@/components/cta";
 import { PADDING_HORIZONTAL_PAGE } from "@/constants/styles";
 import useProfile from "@/hooks/useProfile";
-import { StyleSheet, Text } from "react-native";
-import { SafeAreaView } from "react-native-safe-area-context";
 
 export default function Profile() {
   const { logout, userName } = useProfile();

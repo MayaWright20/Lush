@@ -1,8 +1,3 @@
-import { COLORS } from "@/constants/colors";
-import {
-  PADDING_HORIZONTAL_BTN,
-  PADDING_VERTICAL_BTN,
-} from "@/constants/styles";
 import {
   StyleSheet,
   Text,
@@ -10,6 +5,12 @@ import {
   TouchableOpacity,
   ViewStyle,
 } from "react-native";
+
+import { COLORS } from "@/constants/colors";
+import {
+  PADDING_HORIZONTAL_BTN,
+  PADDING_VERTICAL_BTN,
+} from "@/constants/styles";
 
 interface Props {
   title: string;

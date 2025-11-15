@@ -1,3 +1,4 @@
+import { useCallback, useEffect, useRef, useState } from "react";
 import {
   Pressable,
   StyleSheet,
@@ -5,14 +6,13 @@ import {
   TextInput,
   ViewStyle,
 } from "react-native";
-
-import { COLORS } from "@/constants/colors";
-import { useCallback, useEffect, useRef, useState } from "react";
 import Animated, {
   useAnimatedStyle,
   useSharedValue,
   withTiming,
 } from "react-native-reanimated";
+
+import { COLORS } from "@/constants/colors";
 
 const ANIMATION_DURATION = 600;
 

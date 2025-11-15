@@ -1,3 +1,8 @@
+import { router } from "expo-router";
+import { useState } from "react";
+import { KeyboardAvoidingView, Platform, StyleSheet } from "react-native";
+import { SafeAreaView } from "react-native-safe-area-context";
+
 import AnimatedTextInput from "@/components/animated-text-input";
 import CheckedBackground from "@/components/backgrounds/checked-background";
 import CTA from "@/components/cta";
@@ -6,10 +11,6 @@ import { NAME_VALIDATOR } from "@/constants/regex";
 import { PADDING_HORIZONTAL_PAGE } from "@/constants/styles";
 import useProfile from "@/hooks/useProfile";
 import { isRegexValid, regexErrorMessage } from "@/utils/regex-validators";
-import { router } from "expo-router";
-import { useState } from "react";
-import { KeyboardAvoidingView, Platform, StyleSheet } from "react-native";
-import { SafeAreaView } from "react-native-safe-area-context";
 
 export default function AuthScreen() {
   const { login, setUserName } = useProfile();

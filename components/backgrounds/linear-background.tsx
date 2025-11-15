@@ -1,7 +1,8 @@
-import { COLORS } from "@/constants/colors";
 import { LinearGradient, LinearGradientProps } from "expo-linear-gradient";
 import React from "react";
 import { ColorValue } from "react-native";
+
+import { COLORS } from "@/constants/colors";
 
 interface LinearBackgroundProps {
   colors?: readonly [ColorValue, ColorValue, ...ColorValue[]];
