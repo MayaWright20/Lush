@@ -12,16 +12,19 @@ import { KeyboardAvoidingView, Platform, StyleSheet } from "react-native";
 import { SafeAreaView } from "react-native-safe-area-context";
 
 export default function AuthScreen() {
-  const { login, setUserName, userName } = useProfile();
+  const { login, setUserName } = useProfile();
+
   const [showErrorMessage, setShowErrorMessage] = useState(false);
+  const [username, setUsername] = useState<string | undefined>(undefined);
 
   const navigateBack = () => {
     router.back();
   };
 
   const authenticationHandler = () => {
-    if (!userName) return;
-    if (isRegexValid(NAME_VALIDATOR, userName)) {
+    if (!username) return;
+    if (isRegexValid(NAME_VALIDATOR, username)) {
+      setUserName(username);
       login();
     } else {
       setShowErrorMessage(true);
@@ -30,7 +33,7 @@ export default function AuthScreen() {
 
   const onChangeText = (value: string) => {
     setShowErrorMessage(false);
-    setUserName(value);
+    setUsername(value);
   };
 
   return (
@@ -47,6 +50,7 @@ export default function AuthScreen() {
           style={styles.wrapper}
         >
           <AnimatedTextInput
+            value={username}
             label={"Name"}
             color="black"
             onChangeText={(value) => onChangeText(value)}
@@ -59,7 +63,7 @@ export default function AuthScreen() {
             touchableOpacityStyle={styles.loginBtn}
             title={"Login"}
             onPress={() => authenticationHandler()}
-            isDisabled={userName?.trim() === "" || userName === undefined}
+            isDisabled={username?.trim() === "" || username === undefined}
           />
         </KeyboardAvoidingView>
       </SafeAreaView>
