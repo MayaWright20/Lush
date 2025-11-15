@@ -1,8 +1,7 @@
 import { COLORS } from "@/constants/colors";
+import { height, width } from "@/constants/dimensions";
 import React from "react";
-import { Dimensions, StyleSheet, View } from "react-native";
-
-const { width, height } = Dimensions.get("window");
+import { StyleSheet, View } from "react-native";
 
 interface Props {
   squareSize?: number;
