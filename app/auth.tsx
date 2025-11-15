@@ -9,7 +9,7 @@ import { KeyboardAvoidingView, Platform, StyleSheet } from "react-native";
 import { SafeAreaView } from "react-native-safe-area-context";
 
 export default function AuthScreen() {
-  const { login, setUserName } = useProfile();
+  const { login, setUserName, userName } = useProfile();
 
   const navigateBack = () => {
     router.back();
@@ -39,6 +39,7 @@ export default function AuthScreen() {
             touchableOpacityStyle={styles.loginBtn}
             title={"Login"}
             onPress={() => login()}
+            isDisabled={userName?.trim() === "" || userName === undefined}
           />
         </KeyboardAvoidingView>
       </SafeAreaView>
