@@ -32,7 +32,6 @@ export default function LinearBackground({
       style={[
         style,
         {
-          position: isFullScreen ? "relative" : "absolute",
           flex: isFullScreen ? 1 : undefined,
         },
       ]}
