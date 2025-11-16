@@ -27,7 +27,7 @@ export default function RootLayout() {
       </Stack.Protected>
       <Stack.Protected guard={!!sessionToken}>
         <Stack.Screen
-          name="(shop)"
+          name="(authenticated)"
           options={{
             headerShown: false,
             animation: "slide_from_bottom",
