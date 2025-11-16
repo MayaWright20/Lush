@@ -28,7 +28,7 @@ export default function Layout() {
           }}
         />
         <Stack.Screen
-          name="[product]"
+          name="[id]"
           options={{
             headerShown: false,
             animation: "slide_from_bottom",

@@ -2,7 +2,7 @@ import { useLocalSearchParams } from "expo-router";
 import { StyleSheet, Text, View } from "react-native";
 
 export default function Product() {
-  const { product: productId } = useLocalSearchParams<{ product: string }>();
+  const { id: productId } = useLocalSearchParams<{ id: string }>();
 
   return (
     <View style={styles.container}>
