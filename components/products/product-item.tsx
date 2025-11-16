@@ -3,26 +3,30 @@ import { Image, StyleSheet, Text, TouchableOpacity } from "react-native";
 
 import { COLORS } from "@/constants/colors";
 import { width } from "@/constants/dimensions";
-import { PADDING_HORIZONTAL_BTN } from "@/constants/styles";
 import { Product } from "@/types";
 
 import LinearBackground from "../backgrounds/linear-background";
 
+import SoldOutLabel from "./sold-out-label";
+
 export default function ProductItem({ item }: { item: Product }) {
+  const naviateToProduct = () => {
+    router.push({
+      pathname: "/[id]",
+      params: {
+        id: item.id,
+        product: JSON.stringify(item),
+      },
+    });
+  };
+
   return (
     <TouchableOpacity
-      onPress={() => {
-        router.navigate({
-          pathname: "/[id]",
-          params: { id: item.id },
-        });
-      }}
+      onPress={naviateToProduct}
       key={item.id}
       style={styles.container}
     >
-      {!item.isAvailableForPurchase && (
-        <Text style={styles.soldOutLabel}>Sold out</Text>
-      )}
+      <SoldOutLabel isVisible={!item.isAvailableForPurchase} />
       <Image src={item.thumbnail && item.thumbnail.url} style={styles.image} />
       <LinearBackground
         colors={["white", COLORS.YELLOW]}
@@ -46,19 +50,6 @@ const styles = StyleSheet.create({
     aspectRatio: 1,
     marginTop: -15,
     width: "100%",
-  },
-  soldOutLabel: {
-    alignSelf: "flex-end",
-    backgroundColor: "black",
-    borderRadius: 2,
-    color: "white",
-    fontWeight: "bold",
-    paddingHorizontal: PADDING_HORIZONTAL_BTN,
-    position: "absolute",
-    textAlign: "center",
-    textTransform: "capitalize",
-    top: "62%",
-    zIndex: 1,
   },
   title: {
     fontWeight: "bold",
