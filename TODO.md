@@ -11,6 +11,8 @@ TODO:
 - light sensor on the home screen so video is never too dark
 - checker board whats your name page
 - Add validation in text-input
+- Add accessibility
+- write in readme about "isAvailableForPurchase": assumption that it means coming soon if false
 
 
 - display all products
