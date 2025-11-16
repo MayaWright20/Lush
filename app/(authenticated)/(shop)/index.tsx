@@ -1,4 +1,4 @@
-import Shop from "@/components/products/shop";
+import Shop from "@/components/shop/shop";
 import useProducts from "@/hooks/useProducts";
 
 export default function Index() {

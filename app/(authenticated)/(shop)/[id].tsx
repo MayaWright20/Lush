@@ -4,7 +4,7 @@ import { Image, ScrollView, StyleSheet } from "react-native";
 import CheckedBackground from "@/components/backgrounds/checked-background";
 import LinearBackground from "@/components/backgrounds/linear-background";
 import { LushFont } from "@/components/lush-font";
-import SoldOutLabel from "@/components/products/sold-out-label";
+import SoldOutLabel from "@/components/shop/sold-out-label";
 import { COLORS } from "@/constants/colors";
 import { PADDING_HORIZONTAL_PAGE } from "@/constants/styles";
 
