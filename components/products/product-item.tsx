@@ -13,8 +13,8 @@ export default function ProductItem({ item }: { item: Product }) {
     <TouchableOpacity
       onPress={() => {
         router.navigate({
-          pathname: "/[product]",
-          params: { product: item.id },
+          pathname: "/[id]",
+          params: { id: item.id },
         });
       }}
       key={item.id}
