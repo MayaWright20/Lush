@@ -21,7 +21,7 @@ export default function ProductItem({ item }: { item: Product }) {
       style={styles.container}
     >
       {!item.isAvailableForPurchase && (
-        <Text style={styles.notAvaliable}>Sold out</Text>
+        <Text style={styles.soldOutLabel}>Sold out</Text>
       )}
       <Image src={item.thumbnail && item.thumbnail.url} style={styles.image} />
       <LinearBackground
@@ -42,15 +42,12 @@ const styles = StyleSheet.create({
     margin: 5,
     width: width / 2.2,
   },
-  description: {
-    color: "yellow",
-  },
   image: {
     aspectRatio: 1,
     marginTop: -15,
     width: "100%",
   },
-  notAvaliable: {
+  soldOutLabel: {
     alignSelf: "flex-end",
     backgroundColor: "black",
     borderRadius: 2,
