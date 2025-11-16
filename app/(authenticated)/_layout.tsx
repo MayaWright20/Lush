@@ -2,6 +2,8 @@ import Ionicons from "@expo/vector-icons/Ionicons";
 import { Tabs } from "expo-router";
 import { useEffect } from "react";
 
+import CheckedBackground from "@/components/backgrounds/checked-background";
+import { COLORS } from "@/constants/colors";
 import { StoreState, useStore } from "@/store/store";
 
 import { data } from "../../data/task_mock_data.json";
@@ -18,6 +20,9 @@ export default function Layout() {
       screenOptions={{
         tabBarActiveTintColor: "black",
         headerShown: false,
+        tabBarBackground: () => (
+          <CheckedBackground isOnlyBorders borderColor={COLORS.BLUE} />
+        ),
       }}
     >
       <Tabs.Screen

@@ -1,9 +1,14 @@
 import { router } from "expo-router";
-import { Image, StyleSheet, Text, TouchableOpacity, View } from "react-native";
+import { Image, StyleSheet, Text, TouchableOpacity } from "react-native";
 
+import { COLORS } from "@/constants/colors";
 import { width } from "@/constants/dimensions";
+import { PADDING_HORIZONTAL_BTN } from "@/constants/styles";
+import { Product } from "@/types";
 
-export default function ProductItem({ item }: { item: any }) {
+import LinearBackground from "../backgrounds/linear-background";
+
+export default function ProductItem({ item }: { item: Product }) {
   return (
     <TouchableOpacity
       onPress={() => {
@@ -15,12 +20,18 @@ export default function ProductItem({ item }: { item: any }) {
       key={item.id}
       style={styles.container}
     >
+      {!item.isAvailableForPurchase && (
+        <Text style={styles.notAvaliable}>Sold out</Text>
+      )}
       <Image src={item.thumbnail && item.thumbnail.url} style={styles.image} />
-      <View style={styles.wrapper}>
+      <LinearBackground
+        colors={["white", COLORS.YELLOW]}
+        style={styles.wrapper}
+      >
         <Text numberOfLines={2} style={styles.title}>
           {item.name}
         </Text>
-      </View>
+      </LinearBackground>
     </TouchableOpacity>
   );
 }
@@ -39,21 +50,36 @@ const styles = StyleSheet.create({
     marginTop: -15,
     width: "100%",
   },
+  notAvaliable: {
+    alignSelf: "flex-end",
+    backgroundColor: "black",
+    borderRadius: 2,
+    color: "white",
+    fontWeight: "bold",
+    paddingHorizontal: PADDING_HORIZONTAL_BTN,
+    position: "absolute",
+    textAlign: "center",
+    textTransform: "capitalize",
+    top: "62%",
+    zIndex: 1,
+  },
   title: {
+    fontWeight: "bold",
     textAlign: "center",
   },
   wrapper: {
-    backgroundColor: "yellow",
+    backgroundColor: "white",
     borderRadius: 15,
     borderWidth: 1,
     flexGrow: 1,
     height: "70%",
     marginTop: "-55%",
+    overflow: "hidden",
     padding: 10,
     paddingTop: "50%",
     position: "relative",
     top: "0%",
-    width: "100%",
+    width: "98%",
     zIndex: -1,
   },
 });

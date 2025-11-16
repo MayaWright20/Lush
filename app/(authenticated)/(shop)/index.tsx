@@ -16,7 +16,6 @@ export default function Index() {
       <CheckedBackground
         isOnlyBorders
         borderColor={COLORS.BLUE}
-        inputHeight={125}
         style={styles.header}
       >
         <SafeAreaView>
