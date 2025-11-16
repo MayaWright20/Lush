@@ -38,7 +38,7 @@ export default function AuthScreen() {
   };
 
   return (
-    <CheckedBackground color1={COLORS.BLUE} color2="transparent">
+    <CheckedBackground isFullScreen color1={COLORS.BLUE} color2="transparent">
       <SafeAreaView style={styles.safeAreaView}>
         <CTA
           textStyle={styles.backCtaTitle}
