@@ -1,4 +1,5 @@
 TODO:
+
 - touchable feedback on buttons  - haptics
 - icons from fat to slim
 - Make profile screen checker board like lush app
@@ -12,7 +13,8 @@ TODO:
 - Add validation in text-input
 
 
-- display all products 
+- display all products
+- Add type for products
 - filter / search 
 - favourites
 
