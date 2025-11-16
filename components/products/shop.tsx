@@ -1,11 +1,8 @@
 import { FlatList } from "react-native";
 
-import { StoreState, useStore } from "@/store/store";
-
 import ProductItem from "./shop-item";
 
-export default function Shop() {
-  const products = useStore((state: StoreState) => state.products);
+export default function Shop({ products }: { products: any }) {
   return (
     <FlatList
       numColumns={2}

@@ -6,8 +6,11 @@ import { LushFont } from "@/components/lush-font";
 import Products from "@/components/products/shop";
 import { COLORS } from "@/constants/colors";
 import { PADDING_HORIZONTAL_PAGE } from "@/constants/styles";
+import useProducts from "@/hooks/useProducts";
 
 export default function Index() {
+  const { products } = useProducts();
+
   return (
     <>
       <CheckedBackground
@@ -20,7 +23,7 @@ export default function Index() {
           <LushFont style={styles.logo}>Lush</LushFont>
         </SafeAreaView>
       </CheckedBackground>
-      <Products />
+      <Products products={products} />
     </>
   );
 }
