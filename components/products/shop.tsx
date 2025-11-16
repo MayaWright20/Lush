@@ -1,6 +1,6 @@
 import { FlatList } from "react-native";
 
-import ProductItem from "./shop-item";
+import ProductItem from "./product-item";
 
 export default function Shop({ products }: { products: any }) {
   return (
