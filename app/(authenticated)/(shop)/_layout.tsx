@@ -6,9 +6,14 @@ import CheckedBackground from "@/components/backgrounds/checked-background";
 import { LushFont } from "@/components/lush-font";
 import { COLORS } from "@/constants/colors";
 import { PADDING_HORIZONTAL_PAGE } from "@/constants/styles";
+import { StoreState, useStore } from "@/store/store";
 
 export default function Layout() {
+  const setFilteredProducts = useStore(
+    (state: StoreState) => state.setFilteredProducts,
+  );
   const navigateToShop = () => {
+    setFilteredProducts("");
     router.navigate("/(shop)/");
   };
 
