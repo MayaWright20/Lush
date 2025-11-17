@@ -11,7 +11,6 @@ import { data } from "../../data/task_mock_data.json";
 
 export default function Layout() {
   const setProducts = useStore((state: StoreState) => state.setProducts);
-  console.log(data);
 
   useEffect(() => {
     if (!data) return;
