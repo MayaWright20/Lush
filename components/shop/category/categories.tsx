@@ -1,6 +1,6 @@
 import { FlatList } from "react-native";
 
-import CategoryCTA from "@/components/category-cta";
+import CategoryCTA from "./category-cta";
 
 interface Props {
   categories?: string[];

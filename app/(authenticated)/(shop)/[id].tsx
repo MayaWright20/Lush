@@ -3,11 +3,9 @@ import { Image, ScrollView, StyleSheet, Text, View } from "react-native";
 import RenderHtml from "react-native-render-html";
 import { SafeAreaProvider, SafeAreaView } from "react-native-safe-area-context";
 
-import CheckedBackground from "@/components/backgrounds/checked-background";
 import CTA from "@/components/cta";
 import { LushFont } from "@/components/lush-font";
 import SoldOutLabel from "@/components/shop/sold-out-label";
-import { COLORS } from "@/constants/colors";
 import { PADDING_HORIZONTAL_PAGE } from "@/constants/styles";
 import { Product as ProductType } from "@/types";
 import { formatPrice } from "@/utils/formatters";
@@ -25,49 +23,46 @@ export default function Product() {
   };
 
   return (
-    <>
-      <CheckedBackground borderColor={COLORS.BLUE} isOnlyBorders />
-      <SafeAreaProvider>
-        <SafeAreaView style={styles.container} edges={["top"]}>
-          <SoldOutLabel isVisible={!item.isAvailableForPurchase} />
-          <ScrollView style={styles.scrollView}>
-            <CTA
-              touchableOpacityStyle={styles.cta}
-              title={"Back"}
-              onPress={navigateBack}
-            />
-            <Image src={item.thumbnail.url} style={styles.image} />
-            <View style={styles.detailsWrapper}>
-              <LushFont style={styles.title}>{item.name}</LushFont>
+    <SafeAreaProvider>
+      <SafeAreaView style={styles.container} edges={["top"]}>
+        <SoldOutLabel isVisible={!item.isAvailableForPurchase} />
+        <ScrollView style={styles.scrollView}>
+          <CTA
+            touchableOpacityStyle={styles.cta}
+            title={"Back"}
+            onPress={navigateBack}
+          />
+          <Image src={item.thumbnail.url} style={styles.image} />
+          <View style={styles.detailsWrapper}>
+            <LushFont style={styles.title}>{item.name}</LushFont>
 
-              <LushFont style={styles.price}>
-                £{formatPrice(item.maxPrice)}
-              </LushFont>
-              <View style={styles.categoritesWrapper}>
-                <Text style={styles.category}>⚪️</Text>
-                {item.category.map((item, index) => (
-                  <Text key={index} style={styles.category}>
-                    {` ${item} ⚪️`}
-                  </Text>
-                ))}
-              </View>
-              {html && (
-                <RenderHtml
-                  contentWidth={100}
-                  source={{ html }}
-                  baseStyle={styles.description}
-                  tagsStyles={{
-                    a: { textDecorationLine: "underline" },
-                    b: { fontWeight: "bold" },
-                    i: { fontStyle: "italic" },
-                  }}
-                />
-              )}
+            <LushFont style={styles.price}>
+              £{formatPrice(item.maxPrice)}
+            </LushFont>
+            <View style={styles.categoritesWrapper}>
+              <Text style={styles.category}>⚪️</Text>
+              {item.category.map((item, index) => (
+                <Text key={index} style={styles.category}>
+                  {` ${item} ⚪️`}
+                </Text>
+              ))}
             </View>
-          </ScrollView>
-        </SafeAreaView>
-      </SafeAreaProvider>
-    </>
+            {html && (
+              <RenderHtml
+                contentWidth={100}
+                source={{ html }}
+                baseStyle={styles.description}
+                tagsStyles={{
+                  a: { textDecorationLine: "underline" },
+                  b: { fontWeight: "bold" },
+                  i: { fontStyle: "italic" },
+                }}
+              />
+            )}
+          </View>
+        </ScrollView>
+      </SafeAreaView>
+    </SafeAreaProvider>
   );
 }
 

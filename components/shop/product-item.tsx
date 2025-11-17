@@ -39,9 +39,11 @@ export default function ProductItem({ item }: { item: Product }) {
 
 const styles = StyleSheet.create({
   container: {
+    flex: 1,
     height: height / 3.5,
     margin: 5,
     marginVertical: 5,
+    position: "relative",
     width: width / 2.2,
   },
   image: {

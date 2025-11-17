@@ -1,5 +1,5 @@
 import React from "react";
-import { StyleSheet, View, ViewStyle } from "react-native";
+import { View, ViewStyle } from "react-native";
 
 import { height, width } from "@/constants/dimensions";
 
@@ -35,7 +35,7 @@ export default function CheckedBackground({
   const totalSquares = rows * columns;
 
   return (
-    <View style={[isFullScreen && StyleSheet.absoluteFill, style]}>
+    <View style={[{ flex: 1, position: "relative" }, style]}>
       {Array.from({ length: totalSquares }).map((_, index) => {
         const row = Math.floor(index / columns);
         const col = index % columns;
@@ -53,11 +53,12 @@ export default function CheckedBackground({
               borderWidth: isOnlyBorders ? 2 : 0,
               borderColor: borderColor,
               backgroundColor: isEven && !isOnlyBorders ? color1 : color2,
+              zIndex: -1,
             }}
           />
         );
       })}
-      {children}
+      <View style={{ flex: 1 }}>{children}</View>
     </View>
   );
 }

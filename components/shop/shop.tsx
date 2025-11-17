@@ -1,4 +1,4 @@
-import { FlatList, StyleSheet } from "react-native";
+import { FlatList } from "react-native";
 
 import { Product } from "@/types";
 
@@ -15,13 +15,6 @@ export default function Shop({ products }: Props) {
       data={products || []}
       renderItem={({ item }) => <ProductItem item={item} />}
       keyExtractor={(item, index) => item.id?.toString() || `product-${index}`}
-      columnWrapperStyle={styles.container}
     />
   );
 }
-
-const styles = StyleSheet.create({
-  container: {
-    justifyContent: "space-around",
-  },
-});

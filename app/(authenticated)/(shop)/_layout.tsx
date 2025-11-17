@@ -12,29 +12,30 @@ export default function Layout() {
     <View style={styles.container}>
       <CheckedBackground
         isOnlyBorders
-        borderColor={COLORS.BLUE}
-        style={styles.header}
+        isFullScreen
+        borderColor={COLORS.PINK}
+        style={styles.container}
       >
         <SafeAreaView>
           <LushFont style={styles.logo}>Lush</LushFont>
         </SafeAreaView>
+        <Stack screenOptions={{ headerShown: false }}>
+          <Stack.Screen
+            name="index"
+            options={{
+              headerShown: false,
+              animation: "flip",
+            }}
+          />
+          <Stack.Screen
+            name="[id]"
+            options={{
+              headerShown: false,
+              animation: "slide_from_bottom",
+            }}
+          />
+        </Stack>
       </CheckedBackground>
-      <Stack screenOptions={{ headerShown: false }}>
-        <Stack.Screen
-          name="index"
-          options={{
-            headerShown: false,
-            animation: "flip",
-          }}
-        />
-        <Stack.Screen
-          name="[id]"
-          options={{
-            headerShown: false,
-            animation: "slide_from_bottom",
-          }}
-        />
-      </Stack>
     </View>
   );
 }
@@ -42,11 +43,8 @@ const styles = StyleSheet.create({
   container: {
     flex: 1,
   },
-  header: {
-    padding: PADDING_HORIZONTAL_PAGE,
-    width: "100%",
-  },
   logo: {
     fontSize: 32,
+    padding: PADDING_HORIZONTAL_PAGE,
   },
 });
