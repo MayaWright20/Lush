@@ -22,11 +22,7 @@ export default function ProductItem({ item }: { item: Product }) {
   };
 
   return (
-    <TouchableOpacity
-      onPress={naviateToProduct}
-      key={item.id}
-      style={styles.container}
-    >
+    <TouchableOpacity onPress={naviateToProduct} style={styles.container}>
       <SoldOutLabel isVisible={!item.isAvailableForPurchase} />
       <Image src={item.thumbnail && item.thumbnail.url} style={styles.image} />
       <LinearBackground

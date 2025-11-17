@@ -18,7 +18,9 @@ export default function Shop({ products }: Props) {
         numColumns={2}
         data={products || []}
         renderItem={({ item }) => <ProductItem item={item} />}
-        keyExtractor={(item) => item.id?.toString() || ""}
+        keyExtractor={(item, index) =>
+          item.id?.toString() || `product-${index}`
+        }
         columnWrapperStyle={styles.container}
       />
     </CheckedBackground>
