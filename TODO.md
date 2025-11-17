@@ -15,6 +15,7 @@ TODO:
 - write in readme about "isAvailableForPurchase": assumption that it means coming soon if false
 - loading page if no data
 - when category button is clicked the search bar should be cleared
+- when clicking back on the item it navigate to the shop
 
 
 - display all products

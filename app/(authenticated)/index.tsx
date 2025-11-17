@@ -1,39 +1,31 @@
-import { StyleSheet, Text } from "react-native";
+import { StyleSheet } from "react-native";
 import { SafeAreaView } from "react-native-safe-area-context";
 
-import LinearBackground from "@/components/backgrounds/linear-background";
+import CheckedBackground from "@/components/backgrounds/checked-background";
 import CTA from "@/components/cta";
-import { PADDING_HORIZONTAL_PAGE } from "@/constants/styles";
+import { LushFont } from "@/components/lush-font";
+import { COLORS } from "@/constants/colors";
+import { FONT_SIZE_HEADER, PADDING_HORIZONTAL_PAGE } from "@/constants/styles";
 import useProfile from "@/hooks/useProfile";
 
 export default function Profile() {
   const { logout, userName } = useProfile();
 
   return (
-    <LinearBackground
-      isFullScreen
-      style={styles.linearBackground}
-      colors={["#ffffff", "#ffffff", "#ffffff", "#fae8f6"]}
-    >
+    <CheckedBackground isOnlyBorders borderColor={COLORS.BLUE}>
       <SafeAreaView style={styles.safeAreaView}>
-        <Text style={styles.title}>{`Hi ${userName}`}</Text>
+        <LushFont
+          style={{ fontSize: FONT_SIZE_HEADER }}
+        >{`Hi ${userName}`}</LushFont>
         <CTA title={"Logout"} onPress={logout} />
       </SafeAreaView>
-    </LinearBackground>
+    </CheckedBackground>
   );
 }
 
 const styles = StyleSheet.create({
-  linearBackground: {
-    padding: PADDING_HORIZONTAL_PAGE,
-  },
   safeAreaView: {
     flex: 1,
-  },
-  title: {
-    fontSize: 30,
-    fontWeight: "600",
-    marginBottom: "80%",
-    textAlign: "center",
+    padding: PADDING_HORIZONTAL_PAGE,
   },
 });

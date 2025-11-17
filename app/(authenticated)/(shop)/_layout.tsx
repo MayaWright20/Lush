@@ -6,7 +6,7 @@ import AnimatedTextInput from "@/components/animated-text-input";
 import CheckedBackground from "@/components/backgrounds/checked-background";
 import { LushFont } from "@/components/lush-font";
 import { COLORS } from "@/constants/colors";
-import { PADDING_HORIZONTAL_PAGE } from "@/constants/styles";
+import { FONT_SIZE_HEADER, PADDING_HORIZONTAL_PAGE } from "@/constants/styles";
 import { StoreState, useStore } from "@/store/store";
 
 export default function Layout() {
@@ -31,7 +31,7 @@ export default function Layout() {
           style={[styles.wrapper, { height: pathname === "/" ? "22%" : "16%" }]}
         >
           <Pressable onPress={navigateToShop}>
-            <LushFont style={styles.logo}>Lush</LushFont>
+            <LushFont style={{ fontSize: FONT_SIZE_HEADER }}>{`Lush`}</LushFont>
           </Pressable>
 
           {pathname === "/" && (
