@@ -21,7 +21,7 @@ const styles = StyleSheet.create({
     position: "absolute",
     textAlign: "center",
     textTransform: "capitalize",
-    top: "62%",
+    top: "55%",
     zIndex: 1,
   },
 });

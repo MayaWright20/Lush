@@ -1,11 +1,12 @@
 import { router } from "expo-router";
-import { Image, StyleSheet, Text, TouchableOpacity } from "react-native";
+import { Image, StyleSheet, TouchableOpacity } from "react-native";
 
 import { COLORS } from "@/constants/colors";
-import { width } from "@/constants/dimensions";
+import { height, width } from "@/constants/dimensions";
 import { Product } from "@/types";
 
 import LinearBackground from "../backgrounds/linear-background";
+import { LushFont } from "../lush-font";
 
 import SoldOutLabel from "./sold-out-label";
 
@@ -32,9 +33,9 @@ export default function ProductItem({ item }: { item: Product }) {
         colors={["white", COLORS.YELLOW]}
         style={styles.wrapper}
       >
-        <Text numberOfLines={2} style={styles.title}>
+        <LushFont numberOfLines={5} style={styles.title}>
           {item.name}
-        </Text>
+        </LushFont>
       </LinearBackground>
     </TouchableOpacity>
   );
@@ -42,8 +43,9 @@ export default function ProductItem({ item }: { item: Product }) {
 
 const styles = StyleSheet.create({
   container: {
-    height: width / 2,
+    height: height / 3.5,
     margin: 5,
+    marginVertical: 5,
     width: width / 2.2,
   },
   image: {
@@ -61,7 +63,7 @@ const styles = StyleSheet.create({
     borderWidth: 1,
     flexGrow: 1,
     height: "70%",
-    marginTop: "-55%",
+    marginTop: "-50%",
     overflow: "hidden",
     padding: 10,
     paddingTop: "50%",
