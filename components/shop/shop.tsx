@@ -8,7 +8,7 @@ import CheckedBackground from "../backgrounds/checked-background";
 import ProductItem from "./product-item";
 
 interface Props {
-  products: Product[];
+  products?: Product[];
 }
 
 export default function Shop({ products }: Props) {

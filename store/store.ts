@@ -2,14 +2,16 @@ import AsyncStorage from "@react-native-async-storage/async-storage";
 import { create } from "zustand";
 import { createJSONStorage, persist } from "zustand/middleware";
 
+import { Product } from "@/types";
+
 export interface StoreState {
-  products: any;
-  setProducts: (products: any) => void;
+  products?: Product[];
+  setProducts: (products: Product[]) => void;
 }
 
 export const useStore = create<StoreState>((set, get) => ({
   products: undefined,
-  setProducts: (products: any) => set(() => ({ products })),
+  setProducts: (products: Product[]) => set(() => ({ products })),
 }));
 
 export interface PersistStoreState {
