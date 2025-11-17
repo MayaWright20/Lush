@@ -33,7 +33,20 @@ export default function Layout() {
           tabBarIcon: ({ color, focused }) => (
             <Ionicons
               name={focused ? "home-sharp" : "home-outline"}
-              color={color}
+              color={"black"}
+              size={24}
+            />
+          ),
+        }}
+      />
+      <Tabs.Screen
+        name="favourites"
+        options={{
+          title: "shop",
+          tabBarIcon: ({ color, focused }) => (
+            <Ionicons
+              name={focused ? "heart-sharp" : "heart-outline"}
+              color={"black"}
               size={24}
             />
           ),
