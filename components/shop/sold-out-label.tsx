@@ -14,7 +14,9 @@ const styles = StyleSheet.create({
   label: {
     alignSelf: "flex-end",
     backgroundColor: "black",
+    borderColor: "white",
     borderRadius: 2,
+    borderWidth: 1,
     color: "white",
     fontWeight: "bold",
     paddingHorizontal: PADDING_HORIZONTAL_BTN,
