@@ -5,15 +5,17 @@ import { useEffect } from "react";
 import CheckedBackground from "@/components/backgrounds/checked-background";
 import { COLORS } from "@/constants/colors";
 import { StoreState, useStore } from "@/store/store";
+import { Product } from "@/types";
 
 import { data } from "../../data/task_mock_data.json";
 
 export default function Layout() {
   const setProducts = useStore((state: StoreState) => state.setProducts);
+  console.log(data);
 
   useEffect(() => {
     if (!data) return;
-    setProducts(data);
+    setProducts(data as Product[]);
   }, [setProducts]);
   return (
     <Tabs
