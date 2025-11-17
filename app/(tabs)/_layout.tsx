@@ -2,8 +2,6 @@ import Ionicons from "@expo/vector-icons/Ionicons";
 import { Tabs } from "expo-router";
 import { useEffect } from "react";
 
-import CheckedBackground from "@/components/backgrounds/checked-background";
-import { COLORS } from "@/constants/colors";
 import { StoreState, useStore } from "@/store/store";
 import { Product } from "@/types";
 
@@ -21,13 +19,13 @@ export default function Layout() {
       screenOptions={{
         tabBarActiveTintColor: "black",
         headerShown: false,
-        tabBarBackground: () => (
-          <CheckedBackground isOnlyBorders borderColor={COLORS.BLUE} />
-        ),
+        // tabBarBackground: () => (
+        //   <CheckedBackground isOnlyBorders borderColor={COLORS.BLUE} />
+        // ),
       }}
     >
       <Tabs.Screen
-        name="(shop)"
+        name="index"
         options={{
           title: "shop",
           tabBarIcon: ({ color, focused }) => (
@@ -40,9 +38,9 @@ export default function Layout() {
         }}
       />
       <Tabs.Screen
-        name="favourites"
+        name="favourites/index"
         options={{
-          title: "shop",
+          title: "favourites",
           tabBarIcon: ({ color, focused }) => (
             <Ionicons
               name={focused ? "heart-sharp" : "heart-outline"}
@@ -53,7 +51,7 @@ export default function Layout() {
         }}
       />
       <Tabs.Screen
-        name="index"
+        name="profile/index"
         options={{
           title: "profile",
           tabBarIcon: ({ color, focused }) => (

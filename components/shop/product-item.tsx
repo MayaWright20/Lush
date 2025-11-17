@@ -14,7 +14,7 @@ import SoldOutLabel from "./sold-out-label";
 function ProductItem({ item }: { item: Product }) {
   const naviateToProduct = () => {
     router.push({
-      pathname: "/[id]",
+      pathname: "/product/[id]",
       params: {
         id: item.slug,
         product: JSON.stringify(item),
