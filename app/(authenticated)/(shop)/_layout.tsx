@@ -12,8 +12,7 @@ export default function Layout() {
     <View style={styles.container}>
       <CheckedBackground
         isOnlyBorders
-        isFullScreen
-        borderColor={COLORS.PINK}
+        borderColor={COLORS.BLUE}
         style={styles.container}
       >
         <SafeAreaView>
