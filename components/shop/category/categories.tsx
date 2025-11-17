@@ -1,4 +1,5 @@
-import { FlatList } from "react-native";
+import React, { useCallback } from "react";
+import { FlatList, ListRenderItem } from "react-native";
 
 import CategoryCTA from "./category-cta";
 
@@ -7,13 +8,24 @@ interface Props {
 }
 
 export default function Categories({ categories }: Props) {
+  const renderItem: ListRenderItem<string> = useCallback(
+    ({ item }) => <CategoryCTA category={item} />,
+    [],
+  );
+
+  const keyExtractor = useCallback((item: string) => item, []);
+
   return (
     <FlatList
       data={categories}
-      renderItem={({ item }) => <CategoryCTA category={item} />}
-      keyExtractor={(item) => item}
+      renderItem={renderItem}
+      keyExtractor={keyExtractor}
       horizontal
       showsHorizontalScrollIndicator={false}
+      removeClippedSubviews={true}
+      maxToRenderPerBatch={5}
+      windowSize={5}
+      initialNumToRender={3}
     />
   );
 }

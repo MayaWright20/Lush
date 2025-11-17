@@ -1,4 +1,5 @@
 import { router } from "expo-router";
+import React from "react";
 import { Image, StyleSheet, TouchableOpacity } from "react-native";
 
 import { COLORS } from "@/constants/colors";
@@ -10,7 +11,7 @@ import { LushFont } from "../lush-font";
 
 import SoldOutLabel from "./sold-out-label";
 
-export default function ProductItem({ item }: { item: Product }) {
+function ProductItem({ item }: { item: Product }) {
   const naviateToProduct = () => {
     router.push({
       pathname: "/[id]",
@@ -37,13 +38,14 @@ export default function ProductItem({ item }: { item: Product }) {
   );
 }
 
+export default React.memo(ProductItem);
+
 const styles = StyleSheet.create({
   container: {
     flex: 1,
     height: height / 3.5,
     margin: 5,
     marginVertical: 5,
-    position: "relative",
     width: width / 2.2,
   },
   image: {

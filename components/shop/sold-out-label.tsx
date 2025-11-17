@@ -1,3 +1,4 @@
+import React from "react";
 import { StyleSheet, Text } from "react-native";
 
 import { PADDING_HORIZONTAL_BTN } from "@/constants/styles";
@@ -6,9 +7,11 @@ interface Props {
   isVisible?: boolean;
 }
 
-export default function SoldOutLabel({ isVisible }: Props) {
+function SoldOutLabel({ isVisible }: Props) {
   return isVisible && <Text style={styles.label}>Sold out</Text>;
 }
+
+export default React.memo(SoldOutLabel);
 
 const styles = StyleSheet.create({
   label: {
