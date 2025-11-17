@@ -2,15 +2,27 @@ import React from "react";
 import { StyleSheet, Text, TouchableOpacity } from "react-native";
 
 import LinearBackground from "@/components/backgrounds/linear-background";
+import { COLORS } from "@/constants/colors";
 
 interface Props {
   category: string;
+  index: number;
 }
 
-function CategoryCTA({ category }: Props) {
+function CategoryCTA({ category, index }: Props) {
+  const colors = Object.values(COLORS).filter(
+    (color) =>
+      color !== COLORS.OVERLAY_DARK &&
+      color !== COLORS.GREY_LIGHT &&
+      color !== COLORS.GREY,
+  );
+  const color = colors[(index + 1) % colors.length];
   return (
     <TouchableOpacity style={styles.container}>
-      <LinearBackground style={styles.linearBackground}>
+      <LinearBackground
+        colors={["white", color]}
+        style={styles.linearBackground}
+      >
         <Text style={styles.title}>{category}</Text>
       </LinearBackground>
     </TouchableOpacity>

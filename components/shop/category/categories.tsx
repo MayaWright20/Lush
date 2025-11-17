@@ -9,7 +9,7 @@ interface Props {
 
 export default function Categories({ categories }: Props) {
   const renderItem: ListRenderItem<string> = useCallback(
-    ({ item }) => <CategoryCTA category={item} />,
+    ({ item, index }) => <CategoryCTA category={item} index={index} />,
     [],
   );
 
