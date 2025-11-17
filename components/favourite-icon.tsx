@@ -1,0 +1,37 @@
+import Ionicons from "@expo/vector-icons/Ionicons";
+import { useMemo } from "react";
+
+import { PersistStoreState, usePersistStore } from "@/store/store";
+
+interface Props {
+  isFavourited?: boolean;
+  id: string;
+}
+
+export default function FavouriteIcon({ id }: Props) {
+  const toggleIsFavourite = usePersistStore(
+    (state: PersistStoreState) => state.setFavourites,
+  );
+
+  const favourites = usePersistStore(
+    (state: PersistStoreState) => state.favourites,
+  );
+
+  const userName = usePersistStore(
+    (state: PersistStoreState) => state.userName,
+  );
+
+  const isFavourited = useMemo(
+    () => favourites[`${userName}`]?.includes(id) || false,
+    [favourites, id, userName],
+  );
+
+  return (
+    <Ionicons
+      name={isFavourited ? "heart-sharp" : "heart-outline"}
+      color={isFavourited ? "red" : "black"}
+      size={34}
+      onPress={() => toggleIsFavourite(id)}
+    />
+  );
+}

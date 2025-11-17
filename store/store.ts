@@ -4,6 +4,8 @@ import { createJSONStorage, persist } from "zustand/middleware";
 
 import { Product } from "@/types";
 
+type FavouritesDataBase = Record<string, string[]>;
+
 export interface StoreState {
   products?: Product[];
   setProducts: (products: Product[]) => void;
@@ -39,6 +41,8 @@ export interface PersistStoreState {
   userName: string | undefined;
   setUserName: (userName: string) => void;
   clearStore: () => Promise<void>;
+  favourites: FavouritesDataBase;
+  setFavourites: (favourites: string) => void;
 }
 
 const sessionStorage = {
@@ -62,6 +66,23 @@ export const usePersistStore = create<PersistStoreState>()(
     (set, get) => ({
       sessionToken: null,
       setSessionToken: (sessionToken: string | null) => set({ sessionToken }),
+      favourites: {},
+      setFavourites: (favourite: string) =>
+        set((state) => {
+          if (!state.userName) return {};
+
+          const userFavourites = state.favourites[state.userName] || [];
+          const exists = userFavourites.includes(favourite);
+
+          return {
+            favourites: {
+              ...state.favourites,
+              [state.userName]: exists
+                ? userFavourites.filter((item) => item !== favourite)
+                : [...userFavourites, favourite],
+            },
+          };
+        }),
       userName: undefined,
       setUserName: (userName: string) => set({ userName }),
       clearStore: async () => {

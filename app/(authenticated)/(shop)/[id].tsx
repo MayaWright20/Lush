@@ -5,6 +5,7 @@ import { SafeAreaProvider, SafeAreaView } from "react-native-safe-area-context";
 
 import CheckedBackground from "@/components/backgrounds/checked-background";
 import CTA from "@/components/cta";
+import FavouriteIcon from "@/components/favourite-icon";
 import { LushFont } from "@/components/lush-font";
 import SoldOutLabel from "@/components/shop/sold-out-label";
 import { COLORS } from "@/constants/colors";
@@ -38,10 +39,11 @@ export default function Product() {
               title={"Back"}
               onPress={navigateBack}
             />
+            <FavouriteIcon id={item.id} />
+
             <Image src={item.thumbnail.url} style={styles.image} />
             <View style={styles.detailsWrapper}>
               <LushFont style={styles.title}>{item.name}</LushFont>
-
               <LushFont style={styles.price}>
                 £{formatPrice(item.maxPrice)}
               </LushFont>
