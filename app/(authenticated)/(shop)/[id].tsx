@@ -1,10 +1,11 @@
-import { useLocalSearchParams } from "expo-router";
+import { router, useLocalSearchParams } from "expo-router";
 import { Image, ScrollView, StyleSheet } from "react-native";
 import RenderHtml from "react-native-render-html";
 import { SafeAreaProvider, SafeAreaView } from "react-native-safe-area-context";
 
 import CheckedBackground from "@/components/backgrounds/checked-background";
 import LinearBackground from "@/components/backgrounds/linear-background";
+import CTA from "@/components/cta";
 import { LushFont } from "@/components/lush-font";
 import SoldOutLabel from "@/components/shop/sold-out-label";
 import { COLORS } from "@/constants/colors";
@@ -18,6 +19,10 @@ export default function Product() {
   const item = product ? JSON.parse(product) : null;
   const html = item.description;
 
+  const navigateBack = () => {
+    router.back();
+  };
+
   return (
     <>
       <CheckedBackground borderColor={COLORS.BLUE} isOnlyBorders />
@@ -25,6 +30,11 @@ export default function Product() {
         <SafeAreaView style={styles.container} edges={["top"]}>
           <SoldOutLabel isVisible={!item.isAvailableForPurchase} />
           <ScrollView style={styles.scrollView}>
+            <CTA
+              touchableOpacityStyle={styles.cta}
+              title={"Back"}
+              onPress={navigateBack}
+            />
             <Image src={item.thumbnail.url} style={styles.image} />
             <LinearBackground
               colors={["white", COLORS.YELLOW]}
@@ -54,12 +64,16 @@ const styles = StyleSheet.create({
     paddingHorizontal: PADDING_HORIZONTAL_PAGE,
     position: "relative",
   },
+  cta: {
+    alignSelf: "baseline",
+  },
   detailsWrapper: {
     borderRadius: 15,
     borderWidth: 1,
     marginTop: "-50%",
     minHeight: "65%",
     padding: 10,
+    paddingBottom: 40,
     paddingTop: "40%",
     width: "100%",
     zIndex: -1,
