@@ -1,5 +1,5 @@
-import { Stack } from "expo-router";
-import { StyleSheet, View } from "react-native";
+import { router, Stack } from "expo-router";
+import { Pressable, StyleSheet, View } from "react-native";
 import { SafeAreaView } from "react-native-safe-area-context";
 
 import CheckedBackground from "@/components/backgrounds/checked-background";
@@ -8,6 +8,10 @@ import { COLORS } from "@/constants/colors";
 import { PADDING_HORIZONTAL_PAGE } from "@/constants/styles";
 
 export default function Layout() {
+  const navigateToShop = () => {
+    router.navigate("/(shop)/");
+  };
+
   return (
     <View style={styles.container}>
       <CheckedBackground
@@ -16,7 +20,9 @@ export default function Layout() {
         style={styles.container}
       >
         <SafeAreaView>
-          <LushFont style={styles.logo}>Lush</LushFont>
+          <Pressable onPress={navigateToShop}>
+            <LushFont style={styles.logo}>Lush</LushFont>
+          </Pressable>
         </SafeAreaView>
         <Stack screenOptions={{ headerShown: false }}>
           <Stack.Screen

@@ -1,5 +1,5 @@
 import React, { useCallback } from "react";
-import { FlatList, ListRenderItem } from "react-native";
+import { FlatList, ListRenderItem, StyleSheet } from "react-native";
 
 import CategoryCTA from "./category-cta";
 
@@ -26,6 +26,13 @@ export default function Categories({ categories }: Props) {
       maxToRenderPerBatch={5}
       windowSize={5}
       initialNumToRender={3}
+      contentContainerStyle={styles.container}
     />
   );
 }
+
+const styles = StyleSheet.create({
+  container: {
+    justifyContent: "space-evenly",
+  },
+});
