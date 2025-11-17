@@ -8,12 +8,7 @@ export default function Index() {
   const { products, categories } = useProducts();
 
   return (
-    <CheckedBackground
-      isOnlyBorders
-      // isFullScreen
-      borderColor={COLORS.BLUE}
-      // style={{ flex: 1 }}
-    >
+    <CheckedBackground isOnlyBorders borderColor={COLORS.BLUE}>
       <Categories categories={categories} />
       <Shop products={products} />
     </CheckedBackground>

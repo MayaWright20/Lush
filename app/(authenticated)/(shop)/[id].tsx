@@ -29,7 +29,10 @@ export default function Product() {
       <SafeAreaProvider>
         <SafeAreaView style={styles.container} edges={["top"]}>
           <SoldOutLabel isVisible={!item.isAvailableForPurchase} />
-          <ScrollView style={styles.scrollView}>
+          <ScrollView
+            showsVerticalScrollIndicator={false}
+            style={styles.scrollView}
+          >
             <CTA
               touchableOpacityStyle={styles.cta}
               title={"Back"}

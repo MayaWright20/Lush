@@ -44,6 +44,7 @@ export default function Shop({ products }: Props) {
       windowSize={10}
       initialNumToRender={6}
       updateCellsBatchingPeriod={50}
+      showsVerticalScrollIndicator={false}
     />
   );
 }
