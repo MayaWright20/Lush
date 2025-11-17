@@ -3,6 +3,7 @@ import { StyleSheet, Text, TouchableOpacity } from "react-native";
 
 import LinearBackground from "@/components/backgrounds/linear-background";
 import { COLORS } from "@/constants/colors";
+import { width } from "@/constants/dimensions";
 import { StoreState, useStore } from "@/store/store";
 
 interface Props {
@@ -46,7 +47,7 @@ const styles = StyleSheet.create({
     flex: 1,
     marginHorizontal: 5,
     overflow: "hidden",
-    width: 170,
+    width: width / 2.1,
   },
   linearBackground: {
     alignItems: "center",
