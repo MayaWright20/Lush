@@ -10,13 +10,15 @@ import { LushFont } from "@/components/lush-font";
 import SoldOutLabel from "@/components/shop/sold-out-label";
 import { COLORS } from "@/constants/colors";
 import { PADDING_HORIZONTAL_PAGE } from "@/constants/styles";
+import { Product as ProductType } from "@/types";
+import { formatPrice } from "@/utils/formatters";
 
 export default function Product() {
   const { product } = useLocalSearchParams<{
     product?: string;
   }>();
 
-  const item = product ? JSON.parse(product) : null;
+  const item: ProductType = product ? JSON.parse(product) : null;
   const html = item.description;
 
   const navigateBack = () => {
@@ -41,15 +43,23 @@ export default function Product() {
               style={styles.detailsWrapper}
             >
               <LushFont style={styles.title}>{item.name}</LushFont>
-              <RenderHtml
-                contentWidth={100}
-                source={{ html }}
-                tagsStyles={{
-                  a: { textDecorationLine: "underline" },
-                  b: { fontWeight: "bold" },
-                  i: { fontStyle: "italic" },
-                }}
-              />
+
+              <LushFont style={styles.price}>
+                £{formatPrice(item.maxPrice)}
+              </LushFont>
+
+              {html && (
+                <RenderHtml
+                  contentWidth={100}
+                  source={{ html }}
+                  baseStyle={styles.description}
+                  tagsStyles={{
+                    a: { textDecorationLine: "underline" },
+                    b: { fontWeight: "bold" },
+                    i: { fontStyle: "italic" },
+                  }}
+                />
+              )}
             </LinearBackground>
           </ScrollView>
         </SafeAreaView>
@@ -67,9 +77,13 @@ const styles = StyleSheet.create({
   cta: {
     alignSelf: "baseline",
   },
+  description: {
+    fontSize: 16,
+  },
   detailsWrapper: {
     borderRadius: 15,
     borderWidth: 1,
+    marginBottom: "20%",
     marginTop: "-50%",
     minHeight: "65%",
     padding: 10,
@@ -82,11 +96,14 @@ const styles = StyleSheet.create({
     aspectRatio: 1,
     width: "100%",
   },
+  price: {
+    fontSize: 38,
+  },
   scrollView: {
     flex: 1,
   },
   title: {
-    fontSize: 20,
+    fontSize: 35,
     fontWeight: "bold",
     marginBottom: 15,
     textAlign: "center",

@@ -17,11 +17,11 @@ interface Collection {
 }
 
 export interface Product {
-  category?: string[];
-  description?: string;
-  minPrice?: string;
-  maxPrice?: string;
-  currency?: string;
+  category: string[];
+  description: string;
+  minPrice: string;
+  maxPrice: string;
+  currency: string;
   slug: string;
   id: string;
   objectID: string;
