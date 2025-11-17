@@ -7,11 +7,15 @@ import { Product } from "@/types";
 export interface StoreState {
   products?: Product[];
   setProducts: (products: Product[]) => void;
+  categories?: string[];
+  setCategories: (categories: string[]) => void;
 }
 
 export const useStore = create<StoreState>((set, get) => ({
   products: undefined,
   setProducts: (products: Product[]) => set(() => ({ products })),
+  categories: undefined,
+  setCategories: (categories: string[]) => set(() => ({ categories })),
 }));
 
 export interface PersistStoreState {

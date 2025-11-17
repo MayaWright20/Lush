@@ -13,6 +13,7 @@ TODO:
 - Add validation in text-input
 - Add accessibility
 - write in readme about "isAvailableForPurchase": assumption that it means coming soon if false
+- loading page if no data
 
 
 - display all products

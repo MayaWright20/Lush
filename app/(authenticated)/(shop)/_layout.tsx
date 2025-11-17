@@ -1,5 +1,5 @@
 import { Stack } from "expo-router";
-import { StyleSheet } from "react-native";
+import { StyleSheet, View } from "react-native";
 import { SafeAreaView } from "react-native-safe-area-context";
 
 import CheckedBackground from "@/components/backgrounds/checked-background";
@@ -9,7 +9,7 @@ import { PADDING_HORIZONTAL_PAGE } from "@/constants/styles";
 
 export default function Layout() {
   return (
-    <>
+    <View style={styles.container}>
       <CheckedBackground
         isOnlyBorders
         borderColor={COLORS.BLUE}
@@ -35,10 +35,13 @@ export default function Layout() {
           }}
         />
       </Stack>
-    </>
+    </View>
   );
 }
 const styles = StyleSheet.create({
+  container: {
+    flex: 1,
+  },
   header: {
     padding: PADDING_HORIZONTAL_PAGE,
     width: "100%",
