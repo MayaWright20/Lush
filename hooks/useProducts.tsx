@@ -8,6 +8,9 @@ export default function useProducts() {
   const setProducts = useStore((state: StoreState) => state.setProducts);
   const categories = useStore((state: StoreState) => state.categories);
   const setCategories = useStore((state: StoreState) => state.setCategories);
+  const filteredProducts = useStore(
+    (state: StoreState) => state.filteredProducts,
+  );
 
   useEffect(() => {
     const getCategories = () => {
@@ -27,7 +30,10 @@ export default function useProducts() {
   }, [products, setCategories]);
 
   return {
-    products,
+    products:
+      filteredProducts && filteredProducts?.length > 0
+        ? filteredProducts
+        : products,
     setProducts,
     categories,
   };

@@ -9,6 +9,8 @@ export interface StoreState {
   setProducts: (products: Product[]) => void;
   categories?: string[];
   setCategories: (categories: string[]) => void;
+  filteredProducts?: Product[];
+  setFilteredProducts: (filter: string) => void;
 }
 
 export const useStore = create<StoreState>((set, get) => ({
@@ -16,6 +18,19 @@ export const useStore = create<StoreState>((set, get) => ({
   setProducts: (products: Product[]) => set(() => ({ products })),
   categories: undefined,
   setCategories: (categories: string[]) => set(() => ({ categories })),
+  filteredProducts: undefined,
+  setFilteredProducts: (filter: string) =>
+    set((state: StoreState) => ({
+      filteredProducts:
+        state.products?.filter(
+          (product) =>
+            product.name?.toLowerCase().includes(filter.toLowerCase()) ||
+            product.category?.some((cat) =>
+              cat.toLowerCase().includes(filter.toLowerCase()),
+            ) ||
+            product.description?.toLowerCase().includes(filter.toLowerCase()),
+        ) || [],
+    })),
 }));
 
 export interface PersistStoreState {

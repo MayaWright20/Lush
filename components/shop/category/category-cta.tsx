@@ -3,6 +3,7 @@ import { StyleSheet, Text, TouchableOpacity } from "react-native";
 
 import LinearBackground from "@/components/backgrounds/linear-background";
 import { COLORS } from "@/constants/colors";
+import { StoreState, useStore } from "@/store/store";
 
 interface Props {
   category: string;
@@ -10,6 +11,9 @@ interface Props {
 }
 
 function CategoryCTA({ category, index }: Props) {
+  const setFilteredProducts = useStore(
+    (state: StoreState) => state.setFilteredProducts,
+  );
   const colors = Object.values(COLORS).filter(
     (color) =>
       color !== COLORS.OVERLAY_DARK &&
@@ -17,8 +21,12 @@ function CategoryCTA({ category, index }: Props) {
       color !== COLORS.GREY,
   );
   const color = colors[(index + 1) % colors.length];
+
   return (
-    <TouchableOpacity style={styles.container}>
+    <TouchableOpacity
+      style={styles.container}
+      onPress={() => setFilteredProducts(category)}
+    >
       <LinearBackground
         colors={["white", color]}
         style={styles.linearBackground}
@@ -42,7 +50,7 @@ const styles = StyleSheet.create({
   },
   linearBackground: {
     alignItems: "center",
-    flex: 1,
+    height: "100%",
     justifyContent: "center",
     width: "100%",
   },

@@ -42,11 +42,10 @@ export default React.memo(ProductItem);
 
 const styles = StyleSheet.create({
   container: {
-    flex: 1,
     height: height / 3.5,
     margin: 5,
     marginVertical: 5,
-    width: width / 2.2,
+    width: width / 2.1,
   },
   image: {
     aspectRatio: 1,

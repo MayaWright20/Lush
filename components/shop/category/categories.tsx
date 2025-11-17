@@ -1,5 +1,5 @@
 import React, { useCallback } from "react";
-import { FlatList, ListRenderItem, StyleSheet } from "react-native";
+import { FlatList, ListRenderItem, StyleSheet, View } from "react-native";
 
 import CategoryCTA from "./category-cta";
 
@@ -16,23 +16,28 @@ export default function Categories({ categories }: Props) {
   const keyExtractor = useCallback((item: string) => item, []);
 
   return (
-    <FlatList
-      data={categories}
-      renderItem={renderItem}
-      keyExtractor={keyExtractor}
-      horizontal
-      showsHorizontalScrollIndicator={false}
-      removeClippedSubviews={true}
-      maxToRenderPerBatch={5}
-      windowSize={5}
-      initialNumToRender={3}
-      contentContainerStyle={styles.container}
-    />
+    <View style={styles.container}>
+      <FlatList
+        data={categories}
+        renderItem={renderItem}
+        keyExtractor={keyExtractor}
+        horizontal
+        showsHorizontalScrollIndicator={false}
+        removeClippedSubviews={true}
+        maxToRenderPerBatch={5}
+        windowSize={5}
+        initialNumToRender={3}
+        contentContainerStyle={styles.flatlistContainer}
+      />
+    </View>
   );
 }
 
 const styles = StyleSheet.create({
   container: {
+    height: "10%",
+  },
+  flatlistContainer: {
     justifyContent: "space-evenly",
   },
 });
