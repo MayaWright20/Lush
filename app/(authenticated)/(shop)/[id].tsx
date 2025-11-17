@@ -34,12 +34,14 @@ export default function Product() {
             showsVerticalScrollIndicator={false}
             style={styles.scrollView}
           >
-            <CTA
-              touchableOpacityStyle={styles.cta}
-              title={"Back"}
-              onPress={navigateBack}
-            />
-            <FavouriteIcon id={item.id} />
+            <View style={styles.ctaWrapper}>
+              <CTA
+                touchableOpacityStyle={styles.cta}
+                title={"Back"}
+                onPress={navigateBack}
+              />
+              <FavouriteIcon id={item.id} />
+            </View>
 
             <Image src={item.thumbnail.url} style={styles.image} />
             <View style={styles.detailsWrapper}>
@@ -94,6 +96,10 @@ const styles = StyleSheet.create({
   },
   cta: {
     alignSelf: "baseline",
+  },
+  ctaWrapper: {
+    flexDirection: "row",
+    justifyContent: "space-between",
   },
   description: {
     color: "white",
