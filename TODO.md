@@ -14,6 +14,7 @@ TODO:
 - Add accessibility
 - write in readme about "isAvailableForPurchase": assumption that it means coming soon if false
 - loading page if no data
+- when category button is clicked the search bar should be cleared
 
 
 - display all products

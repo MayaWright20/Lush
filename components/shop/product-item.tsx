@@ -16,7 +16,7 @@ function ProductItem({ item }: { item: Product }) {
     router.push({
       pathname: "/[id]",
       params: {
-        id: item.id,
+        id: item.slug,
         product: JSON.stringify(item),
       },
     });
