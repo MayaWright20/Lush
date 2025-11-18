@@ -75,7 +75,6 @@ const styles = StyleSheet.create({
     flexDirection: "row",
     justifyContent: "center",
     paddingHorizontal: PADDING_HORIZONTAL_PAGE,
-    // textAlign: "center",
   },
   textInput: {
     flex: 1,
@@ -83,7 +82,5 @@ const styles = StyleSheet.create({
   },
   title: {
     fontSize: 45,
-    // marginLeft: 30,
-    // textAlign: "center",
   },
 });
