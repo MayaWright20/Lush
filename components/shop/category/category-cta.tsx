@@ -48,9 +48,9 @@ const styles = StyleSheet.create({
     borderRadius: 15,
     borderWidth: 1,
     flex: 1,
-    marginHorizontal: 5,
+    marginHorizontal: 4,
     overflow: "hidden",
-    width: width / 2.1,
+    width: width / 2.2,
   },
   linearBackground: {
     alignItems: "center",
