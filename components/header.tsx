@@ -41,7 +41,6 @@ export default function Header() {
         isOnlyBorders
         borderColor={COLORS.BLUE}
         inputHeight={400}
-        color2="transparent"
       >
         <SafeAreaView style={styles.safeAreaView}>
           {isSearchShown ? (

@@ -17,8 +17,8 @@ interface Props {
 
 export default function CheckedBackground({
   squareSize = 25,
-  color1,
-  color2,
+  color1 = "white",
+  color2 = "white",
   children,
   style,
   isFullScreen,
