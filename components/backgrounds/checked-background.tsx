@@ -35,7 +35,16 @@ export default function CheckedBackground({
   const totalSquares = rows * columns;
 
   return (
-    <View style={[{ flex: 1, position: "relative" }, style]}>
+    <View
+      style={[
+        {
+          flex: 1,
+          position: "relative",
+          overflow: "hidden",
+        },
+        style,
+      ]}
+    >
       {Array.from({ length: totalSquares }).map((_, index) => {
         const row = Math.floor(index / columns);
         const col = index % columns;

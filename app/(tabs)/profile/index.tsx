@@ -26,6 +26,7 @@ export default function Profile() {
 const styles = StyleSheet.create({
   safeAreaView: {
     flex: 1,
+    justifyContent: "center",
     padding: PADDING_HORIZONTAL_PAGE,
   },
 });

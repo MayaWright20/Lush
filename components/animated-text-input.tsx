@@ -40,6 +40,7 @@ interface Props {
   textInputBgCol?: string;
   containerStyle?: ViewStyle;
   placeholder?: string;
+  onBlur?: () => void;
 }
 
 export default function AnimatedTextInput({
@@ -54,6 +55,7 @@ export default function AnimatedTextInput({
   textInputBgCol = COLORS.GREY_LIGHT,
   containerStyle,
   placeholder,
+  onBlur,
 }: Props) {
   const inputRef = useRef<TextInput>(null);
 
@@ -122,7 +124,11 @@ export default function AnimatedTextInput({
     updateAnimations(isAnimated);
   }, [isAnimated, updateAnimations]);
 
-  const onBlur = () => {
+  const onBlurAnimation = () => {
+    if (onBlur) {
+      onBlur();
+      setIsAnimatingHandler(false);
+    }
     if (value?.trim() === "" || value === undefined) {
       setIsAnimatingHandler(false);
     }
@@ -143,7 +149,7 @@ export default function AnimatedTextInput({
         onPress={() => setIsAnimatingHandler(true)}
         placeholder={isAnimated ? undefined : placeholder}
         textAlign={isAnimated ? "left" : "right"}
-        onBlur={onBlur}
+        onBlur={onBlurAnimation}
       />
       <Animated.View
         style={[

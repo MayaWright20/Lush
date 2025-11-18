@@ -12,13 +12,6 @@ export default function RootLayout() {
     <SafeAreaProvider>
       <Stack screenOptions={{ headerShown: false }}>
         <Stack.Protected guard={!sessionToken}>
-          {/* <Stack.Screen
-            name="index"
-            options={{
-              headerShown: false,
-              animation: "flip",
-            }}
-          /> */}
           <Stack.Screen
             name="(auth)"
             options={{
@@ -38,8 +31,9 @@ export default function RootLayout() {
           <Stack.Screen
             name="product/[id]"
             options={{
-              headerShown: true,
+              headerShown: false,
               title: "Product",
+              animation: "slide_from_bottom",
             }}
           />
         </Stack.Protected>
