@@ -18,11 +18,10 @@ export default function Index() {
         {!hasResults && (
           <>
             <LushFont style={styles.noResultsLabel}>
-              {`No Results found!!! \nPlease try searching again or see all the products below.`}
+              {`No Results found!!! \n Please try searching again or see all the products below.`}
             </LushFont>
           </>
         )}
-
         <Shop
           products={products}
           clearSearch={() => setSearchWord(undefined)}

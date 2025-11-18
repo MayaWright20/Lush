@@ -5,13 +5,13 @@ import { useEffect } from "react";
 import CheckedBackground from "@/components/backgrounds/checked-background";
 import Header from "@/components/header";
 import { COLORS } from "@/constants/colors";
-import { StoreState, useStore } from "@/store/store";
+import useProducts from "@/hooks/useProducts";
 import { Product } from "@/types";
 
 import { data } from "../../data/task_mock_data.json";
 
 export default function Layout() {
-  const setProducts = useStore((state: StoreState) => state.setProducts);
+  const { setProducts } = useProducts();
 
   useEffect(() => {
     if (!data) return;
