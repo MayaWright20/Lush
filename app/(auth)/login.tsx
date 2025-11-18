@@ -5,7 +5,7 @@ import { SafeAreaView } from "react-native-safe-area-context";
 
 import AnimatedTextInput from "@/components/animated-text-input";
 import CheckedBackground from "@/components/backgrounds/checked-background";
-import CTA from "@/components/cta";
+import CTA from "@/components/buttons/cta";
 import { COLORS } from "@/constants/colors";
 import { NAME_VALIDATOR } from "@/constants/regex";
 import { PADDING_HORIZONTAL_PAGE } from "@/constants/styles";

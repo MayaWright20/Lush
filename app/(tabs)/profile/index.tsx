@@ -2,7 +2,7 @@ import { StyleSheet } from "react-native";
 import { SafeAreaView } from "react-native-safe-area-context";
 
 import CheckedBackground from "@/components/backgrounds/checked-background";
-import CTA from "@/components/cta";
+import CTA from "@/components/buttons/cta";
 import { COLORS } from "@/constants/colors";
 import { PADDING_HORIZONTAL_PAGE } from "@/constants/styles";
 import useProfile from "@/hooks/useProfile";

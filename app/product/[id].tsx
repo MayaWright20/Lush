@@ -4,7 +4,7 @@ import RenderHtml from "react-native-render-html";
 import { SafeAreaView } from "react-native-safe-area-context";
 
 import CheckedBackground from "@/components/backgrounds/checked-background";
-import CTA from "@/components/cta";
+import CTA from "@/components/buttons/cta";
 import FavouriteIcon from "@/components/favourite-icon";
 import { LushFont } from "@/components/lush-font";
 import SoldOutLabel from "@/components/shop/sold-out-label";
