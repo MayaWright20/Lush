@@ -9,18 +9,17 @@ import { PADDING_HORIZONTAL_PAGE } from "@/constants/styles";
 import useProducts from "@/hooks/useProducts";
 
 export default function Index() {
-  const { products, categories, setSearchWord, hasResults } = useProducts();
+  const { products, categories, setSearchWord, hasResults, searchWord } =
+    useProducts();
 
   return (
     <CheckedBackground isOnlyBorders borderColor={COLORS.BLUE}>
       <View style={styles.wrapper}>
         <Categories categories={categories} />
-        {!hasResults && (
-          <>
-            <LushFont style={styles.noResultsLabel}>
-              {`No Results found!!! \n Please try searching again or see all the products below.`}
-            </LushFont>
-          </>
+        {!hasResults && searchWord && (
+          <LushFont style={styles.noResultsLabel}>
+            {`No Results found!!! \n Please try searching again or see all the products below.`}
+          </LushFont>
         )}
         <Shop
           products={products}
