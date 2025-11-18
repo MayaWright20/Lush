@@ -38,7 +38,6 @@ interface Props {
   autoCapitalize?: AutoCapitalize;
   errorMessage?: string;
   showErrorMessage?: boolean;
-  textInputBgCol?: string;
   containerStyle?: ViewStyle;
   placeholder?: string;
   onBlur?: () => void;
@@ -53,7 +52,6 @@ export default function AnimatedTextInput({
   autoCapitalize,
   errorMessage,
   showErrorMessage,
-  textInputBgCol = COLORS.GREY_LIGHT,
   containerStyle,
   placeholder,
   onBlur,
@@ -145,7 +143,7 @@ export default function AnimatedTextInput({
         ref={inputRef}
         value={value}
         onChangeText={onChangeTextHandler}
-        style={[styles.textInput, { color, backgroundColor: textInputBgCol }]}
+        style={[styles.textInput, { color }]}
         autoCapitalize={autoCapitalize}
         cursorColor={backgroundColor}
         onPress={() => setIsAnimatingHandler(true)}
