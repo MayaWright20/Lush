@@ -1,7 +1,7 @@
 import { router, useLocalSearchParams } from "expo-router";
 import { Image, ScrollView, StyleSheet, Text, View } from "react-native";
 import RenderHtml from "react-native-render-html";
-import { SafeAreaProvider, SafeAreaView } from "react-native-safe-area-context";
+import { SafeAreaView } from "react-native-safe-area-context";
 
 import CheckedBackground from "@/components/backgrounds/checked-background";
 import CTA from "@/components/cta";
@@ -27,52 +27,49 @@ export default function Product() {
 
   return (
     <CheckedBackground isOnlyBorders borderColor={COLORS.BLUE}>
-      <SafeAreaProvider>
-        <SafeAreaView style={styles.container} edges={["top"]}>
-          <SoldOutLabel isVisible={!item.isAvailableForPurchase} />
-          <ScrollView
-            showsVerticalScrollIndicator={false}
-            style={styles.scrollView}
-          >
-            <View style={styles.ctaWrapper}>
-              <CTA
-                touchableOpacityStyle={styles.cta}
-                title={"Back"}
-                onPress={navigateBack}
+      <SafeAreaView style={styles.container} edges={["top"]}>
+        <SoldOutLabel isVisible={!item.isAvailableForPurchase} />
+        <ScrollView
+          showsVerticalScrollIndicator={false}
+          style={styles.scrollView}
+        >
+          <View style={styles.ctaWrapper}>
+            <CTA
+              touchableOpacityStyle={styles.cta}
+              title={"Back"}
+              onPress={navigateBack}
+            />
+            <FavouriteIcon id={item.id} />
+          </View>
+          <Image src={item.thumbnail.url} style={styles.image} />
+          <View style={styles.detailsWrapper}>
+            <LushFont style={styles.title}>{item.name}</LushFont>
+            <LushFont style={styles.price}>
+              £{formatPrice(item.maxPrice)}
+            </LushFont>
+            <View style={styles.categoritesWrapper}>
+              <Text style={styles.category}>⚪️</Text>
+              {item.category.map((item, index) => (
+                <Text key={index} style={styles.category}>
+                  {` ${item} ⚪️`}
+                </Text>
+              ))}
+            </View>
+            {html && (
+              <RenderHtml
+                contentWidth={100}
+                source={{ html }}
+                baseStyle={styles.description}
+                tagsStyles={{
+                  a: { textDecorationLine: "underline" },
+                  b: { fontWeight: "bold" },
+                  i: { fontStyle: "italic" },
+                }}
               />
-              <FavouriteIcon id={item.id} />
-            </View>
-
-            <Image src={item.thumbnail.url} style={styles.image} />
-            <View style={styles.detailsWrapper}>
-              <LushFont style={styles.title}>{item.name}</LushFont>
-              <LushFont style={styles.price}>
-                £{formatPrice(item.maxPrice)}
-              </LushFont>
-              <View style={styles.categoritesWrapper}>
-                <Text style={styles.category}>⚪️</Text>
-                {item.category.map((item, index) => (
-                  <Text key={index} style={styles.category}>
-                    {` ${item} ⚪️`}
-                  </Text>
-                ))}
-              </View>
-              {html && (
-                <RenderHtml
-                  contentWidth={100}
-                  source={{ html }}
-                  baseStyle={styles.description}
-                  tagsStyles={{
-                    a: { textDecorationLine: "underline" },
-                    b: { fontWeight: "bold" },
-                    i: { fontStyle: "italic" },
-                  }}
-                />
-              )}
-            </View>
-          </ScrollView>
-        </SafeAreaView>
-      </SafeAreaProvider>
+            )}
+          </View>
+        </ScrollView>
+      </SafeAreaView>
     </CheckedBackground>
   );
 }

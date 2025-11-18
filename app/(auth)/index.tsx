@@ -6,7 +6,7 @@ import { Pressable, StyleSheet, Text, View } from "react-native";
 
 import { COLORS } from "@/constants/colors";
 
-const videoSource = require("../assets/videos/lush.mp4");
+const videoSource = require("../../assets/videos/lush.mp4");
 
 export default function Index() {
   const isReversed = useRef(false);
@@ -45,7 +45,7 @@ export default function Index() {
   }, [counter]);
 
   const navigateToAuth = () => {
-    router.navigate("/auth");
+    router.navigate("/login");
   };
 
   return (

@@ -1,3 +1,5 @@
+import { View } from "react-native";
+
 import CheckedBackground from "@/components/backgrounds/checked-background";
 import Categories from "@/components/shop/category/categories";
 import Shop from "@/components/shop/shop";
@@ -9,8 +11,10 @@ export default function Index() {
 
   return (
     <CheckedBackground isOnlyBorders borderColor={COLORS.BLUE}>
-      <Categories categories={categories} />
-      <Shop products={products} />
+      <View style={{ flex: 1 }}>
+        <Categories categories={categories} />
+        <Shop products={products} />
+      </View>
     </CheckedBackground>
   );
 }

@@ -11,6 +11,9 @@ export default function useProducts() {
   const filteredProducts = useStore(
     (state: StoreState) => state.filteredProducts,
   );
+  const setFilteredProducts = useStore(
+    (state: StoreState) => state.setFilteredProducts,
+  );
 
   useEffect(() => {
     const getCategories = () => {
@@ -36,5 +39,6 @@ export default function useProducts() {
         : products,
     setProducts,
     categories,
+    setFilteredProducts,
   };
 }
