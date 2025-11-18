@@ -2,7 +2,7 @@ import Ionicons from "@expo/vector-icons/Ionicons";
 import { useMemo } from "react";
 import { Pressable } from "react-native";
 
-import { PersistStoreState, usePersistStore } from "@/store/store";
+import useProfile from "@/hooks/useProfile";
 import { HapticFeedBack } from "@/utils/haptic-feedback";
 
 interface Props {
@@ -11,17 +11,8 @@ interface Props {
 }
 
 export default function FavouriteIcon({ id }: Props) {
-  const toggleIsFavourite = usePersistStore(
-    (state: PersistStoreState) => state.setFavourites,
-  );
-
-  const favourites = usePersistStore(
-    (state: PersistStoreState) => state.favourites,
-  );
-
-  const userName = usePersistStore(
-    (state: PersistStoreState) => state.userName,
-  );
+  const { setFavourites, favourites, userName } = useProfile();
+  const toggleIsFavourite = (id: string) => setFavourites(id);
 
   const isFavourited = useMemo(
     () => favourites[`${userName}`]?.includes(id) || false,

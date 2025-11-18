@@ -10,10 +10,9 @@ import useProducts from "@/hooks/useProducts";
 import useProfile from "@/hooks/useProfile";
 
 export default function Favourites() {
-  const { products, setFilteredProducts, setSearchWord, favourites } =
-    useProducts();
+  const { products, setFilteredProducts, setSearchWord } = useProducts();
 
-  const { userName } = useProfile();
+  const { userName, favourites } = useProfile();
 
   const pathname = usePathname();
 

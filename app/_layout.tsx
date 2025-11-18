@@ -1,12 +1,10 @@
 import { Stack } from "expo-router";
 import { SafeAreaProvider } from "react-native-safe-area-context";
 
-import { PersistStoreState, usePersistStore } from "@/store/store";
+import useProfile from "@/hooks/useProfile";
 
 export default function RootLayout() {
-  const sessionToken = usePersistStore(
-    (state: PersistStoreState) => state.sessionToken,
-  );
+  const { sessionToken } = useProfile();
 
   return (
     <SafeAreaProvider>

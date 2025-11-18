@@ -1,11 +1,6 @@
 import { useEffect } from "react";
 
-import {
-  PersistStoreState,
-  StoreState,
-  usePersistStore,
-  useStore,
-} from "@/store/store";
+import { StoreState, useStore } from "@/store/store";
 import { Product } from "@/types";
 
 export default function useProducts() {
@@ -23,12 +18,6 @@ export default function useProducts() {
   const setSearchWord = useStore((state: StoreState) => state.setSearchWord);
   const hasResults = useStore((state: StoreState) => state.hasResults);
   const setHasResults = useStore((state: StoreState) => state.setHasResults);
-  const favourites = usePersistStore(
-    (state: PersistStoreState) => state.favourites,
-  );
-  const setFavourites = usePersistStore(
-    (state: PersistStoreState) => state.setFavourites,
-  );
 
   useEffect(() => {
     const getCategories = () => {
@@ -68,7 +57,5 @@ export default function useProducts() {
     setSearchWord,
     hasResults,
     setHasResults,
-    favourites,
-    setFavourites,
   };
 }

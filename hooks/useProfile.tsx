@@ -9,12 +9,22 @@ export default function useProfile() {
     (state: PersistStoreState) => state.clearStore,
   );
 
+  const sessionToken = usePersistStore(
+    (state: PersistStoreState) => state.sessionToken,
+  );
+
   const setUserName = usePersistStore(
     (state: PersistStoreState) => state.setUserName,
   );
 
   const userName = usePersistStore(
     (state: PersistStoreState) => state.userName,
+  );
+  const favourites = usePersistStore(
+    (state: PersistStoreState) => state.favourites,
+  );
+  const setFavourites = usePersistStore(
+    (state: PersistStoreState) => state.setFavourites,
   );
 
   const login = () => {
@@ -34,5 +44,8 @@ export default function useProfile() {
     logout,
     setUserName: setUserNameHandler,
     userName,
+    sessionToken,
+    favourites,
+    setFavourites,
   };
 }
