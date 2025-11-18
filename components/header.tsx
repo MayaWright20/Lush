@@ -31,7 +31,7 @@ export default function Header() {
   const pathname = usePathname();
 
   const isSearchShown = useMemo(
-    () => pathname === "/" || pathname.split("/")[1] === "/product/[id]",
+    () => pathname === "/" || pathname.split("/")[1] === "product",
     [pathname],
   );
 
