@@ -1,9 +1,13 @@
 import React from "react";
-import { StyleSheet, Text, TouchableOpacity } from "react-native";
+import {
+  StyleSheet,
+  Text,
+  TouchableOpacity,
+  useWindowDimensions,
+} from "react-native";
 
 import LinearBackground from "@/components/backgrounds/linear-background";
 import { COLORS } from "@/constants/colors";
-import { width } from "@/constants/dimensions";
 import useProducts from "@/hooks/useProducts";
 import { HapticFeedBack } from "@/utils/haptic-feedback";
 
@@ -11,7 +15,6 @@ interface Props {
   category: string;
   index: number;
 }
-
 function CategoryCTA({ category, index }: Props) {
   const colors = Object.values(COLORS).filter(
     (color) =>
@@ -21,6 +24,7 @@ function CategoryCTA({ category, index }: Props) {
   );
   const color = colors[(index + 1) % colors.length];
   const { setFilteredProducts, setSearchWord, setHasResults } = useProducts();
+  const { width } = useWindowDimensions();
 
   const onPress = () => {
     HapticFeedBack();
@@ -30,7 +34,10 @@ function CategoryCTA({ category, index }: Props) {
   };
 
   return (
-    <TouchableOpacity style={styles.container} onPress={onPress}>
+    <TouchableOpacity
+      style={[styles.container, { width: width / 2.2 }]}
+      onPress={onPress}
+    >
       <LinearBackground
         colors={["white", color]}
         style={styles.linearBackground}
@@ -47,10 +54,8 @@ const styles = StyleSheet.create({
   container: {
     borderRadius: 15,
     borderWidth: 1,
-    flex: 1,
     marginHorizontal: 4,
     overflow: "hidden",
-    width: width / 2.2,
   },
   linearBackground: {
     alignItems: "center",
@@ -60,6 +65,5 @@ const styles = StyleSheet.create({
   },
   title: {
     fontWeight: "bold",
-    padding: 20,
   },
 });

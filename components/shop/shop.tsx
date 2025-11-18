@@ -1,8 +1,7 @@
 import { router } from "expo-router";
 import React, { useCallback, useMemo } from "react";
-import { FlatList, ListRenderItem } from "react-native";
+import { FlatList, ListRenderItem, useWindowDimensions } from "react-native";
 
-import { height } from "@/constants/dimensions";
 import { Product } from "@/types";
 
 import ProductItem from "./product-item";
@@ -13,6 +12,7 @@ interface Props {
 }
 
 export default function Shop({ products, clearSearch }: Props) {
+  const { height } = useWindowDimensions();
   const data = products ?? [];
 
   const handleItemPress = useCallback(
@@ -39,7 +39,7 @@ export default function Shop({ products, clearSearch }: Props) {
     [],
   );
 
-  const ITEM_HEIGHT = useMemo(() => height / 3.5 + 30, []);
+  const ITEM_HEIGHT = useMemo(() => height / 3.5 + 30, [height]);
 
   const getItemLayout = useCallback(
     (_: ArrayLike<Product> | null | undefined, index: number) => {

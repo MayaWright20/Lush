@@ -1,6 +1,6 @@
 import { router, usePathname } from "expo-router";
 import { useMemo } from "react";
-import { StyleSheet, View } from "react-native";
+import { StyleSheet, useWindowDimensions, View } from "react-native";
 import { SafeAreaView } from "react-native-safe-area-context";
 
 import { COLORS } from "@/constants/colors";
@@ -13,7 +13,32 @@ import CheckedBackground from "./backgrounds/checked-background";
 import LogoBtn from "./buttons/logo-btn";
 import { LushFont } from "./lush-font";
 
+function useStyles() {
+  const { height } = useWindowDimensions();
+
+  return StyleSheet.create({
+    headerContainer: {
+      height: height < 500 ? 80 : 140,
+      overflow: "hidden",
+      position: "relative",
+    },
+    safeAreaView: {
+      flexDirection: "row",
+      justifyContent: "center",
+      paddingHorizontal: PADDING_HORIZONTAL_PAGE,
+    },
+    textInput: {
+      flex: 1,
+      marginLeft: 10,
+    },
+    title: {
+      fontSize: 45,
+    },
+  });
+}
+
 export default function Header() {
+  const styles = useStyles();
   const { setFilteredProducts, searchWord, setSearchWord, setHasResults } =
     useProducts();
   const { userName } = useProfile();
@@ -42,7 +67,8 @@ export default function Header() {
       <CheckedBackground
         isOnlyBorders
         borderColor={COLORS.BLUE}
-        inputHeight={400}
+        color1="transparent"
+        color2="transparent"
       >
         <SafeAreaView style={styles.safeAreaView}>
           {isSearchShown ? (
@@ -66,21 +92,3 @@ export default function Header() {
     </View>
   );
 }
-
-const styles = StyleSheet.create({
-  headerContainer: {
-    height: 140,
-  },
-  safeAreaView: {
-    flexDirection: "row",
-    justifyContent: "center",
-    paddingHorizontal: PADDING_HORIZONTAL_PAGE,
-  },
-  textInput: {
-    flex: 1,
-    marginLeft: 10,
-  },
-  title: {
-    fontSize: 45,
-  },
-});

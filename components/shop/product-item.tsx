@@ -1,9 +1,13 @@
 import { router } from "expo-router";
 import React, { useCallback } from "react";
-import { Image, StyleSheet, TouchableOpacity } from "react-native";
+import {
+  Image,
+  StyleSheet,
+  TouchableOpacity,
+  useWindowDimensions,
+} from "react-native";
 
 import { COLORS } from "@/constants/colors";
-import { height, width } from "@/constants/dimensions";
 import { Product } from "@/types";
 import { HapticFeedBack } from "@/utils/haptic-feedback";
 
@@ -18,6 +22,8 @@ interface ProductItemProps {
 }
 
 function ProductItemBase({ item, onPress }: ProductItemProps) {
+  const { width, height } = useWindowDimensions();
+
   const handlePress = useCallback(() => {
     HapticFeedBack();
     if (onPress) {
@@ -34,7 +40,10 @@ function ProductItemBase({ item, onPress }: ProductItemProps) {
   }, [item, onPress]);
 
   return (
-    <TouchableOpacity onPress={handlePress} style={styles.container}>
+    <TouchableOpacity
+      onPress={handlePress}
+      style={[styles.container, { height: height / 3.5, width: width / 2.1 }]}
+    >
       <SoldOutLabel isVisible={!item.isAvailableForPurchase} />
       <Image
         source={item.thumbnail?.url ? { uri: item.thumbnail.url } : undefined}
@@ -65,10 +74,8 @@ export default ProductItem;
 
 const styles = StyleSheet.create({
   container: {
-    height: height / 3.5,
     marginHorizontal: 5,
     marginVertical: 15,
-    width: width / 2.1,
   },
   image: {
     aspectRatio: 1,

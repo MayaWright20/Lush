@@ -35,7 +35,8 @@ export default function Categories({ categories }: Props) {
 
 const styles = StyleSheet.create({
   container: {
-    height: "10%",
+    height: 80,
+    position: "relative",
   },
   flatlistContainer: {
     justifyContent: "space-evenly",

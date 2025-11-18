@@ -1,41 +1,19 @@
 import FontAwesome from "@expo/vector-icons/FontAwesome";
 import { router } from "expo-router";
-import { useVideoPlayer, VideoView } from "expo-video";
-import { useEffect, useRef, useState } from "react";
-import { Pressable, StyleSheet, Text, View } from "react-native";
+import { useEffect, useState } from "react";
+import { StyleSheet, Text, TouchableOpacity, View } from "react-native";
 
+import InfinateVideo from "@/components/infinate-video";
 import { COLORS } from "@/constants/colors";
 
 const videoSource = require("../../assets/videos/lush.mp4");
 
 export default function Index() {
-  const isReversed = useRef(false);
-
   const [counter, setCounter] = useState(0);
 
-  const player = useVideoPlayer(videoSource, (player) => {
-    player.loop = false;
-    player.play();
-  });
-
-  useEffect(() => {
-    const handleVideoEnd = () => {
-      if (isReversed.current) {
-        player.currentTime = 0;
-        player.playbackRate = 1;
-        isReversed.current = false;
-      } else {
-        player.currentTime = player.duration || 0;
-        player.playbackRate = -1;
-        isReversed.current = true;
-      }
-      player.play();
-    };
-
-    const subscription = player.addListener("playToEnd", handleVideoEnd);
-
-    return () => subscription?.remove();
-  }, [player]);
+  const navigateToAuth = () => {
+    router.navigate("/login");
+  };
 
   useEffect(() => {
     const timer = setTimeout(() => {
@@ -44,19 +22,10 @@ export default function Index() {
     return () => clearTimeout(timer);
   }, [counter]);
 
-  const navigateToAuth = () => {
-    router.navigate("/login");
-  };
-
   return (
     <>
-      <VideoView
-        style={[styles.video]}
-        player={player}
-        contentFit="cover"
-        nativeControls={false}
-      />
-      <Pressable onPress={navigateToAuth} style={styles.overlay}>
+      <InfinateVideo videoSource={videoSource} style={styles.video} />
+      <TouchableOpacity onPress={navigateToAuth} style={styles.overlay}>
         <View>
           <Text style={[styles.title, styles.typographyCol]}>LUSH</Text>
           <View style={styles.enterWrapper}>
@@ -74,7 +43,7 @@ export default function Index() {
             })}
           </View>
         </View>
-      </Pressable>
+      </TouchableOpacity>
     </>
   );
 }
@@ -107,5 +76,7 @@ const styles = StyleSheet.create({
   },
   video: {
     ...StyleSheet.absoluteFillObject,
+    height: "100%",
+    width: "100%",
   },
 });

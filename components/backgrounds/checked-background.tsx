@@ -1,7 +1,5 @@
 import React from "react";
-import { StyleSheet, View, ViewStyle } from "react-native";
-
-import { height, width } from "@/constants/dimensions";
+import { StyleSheet, useWindowDimensions, View, ViewStyle } from "react-native";
 
 interface Props {
   squareSize?: number;
@@ -26,6 +24,7 @@ export default function CheckedBackground({
   isOnlyBorders,
   borderColor,
 }: Props) {
+  const { width, height } = useWindowDimensions();
   const columns = Math.ceil(width / squareSize);
   const rows = Math.ceil(
     (!isFullScreen && inputHeight ? inputHeight : height) / squareSize,
@@ -66,12 +65,14 @@ export default function CheckedBackground({
 
 const styles = StyleSheet.create({
   childrenWrapper: {
-    flex: 1,
+    height: "100%",
+    width: "100%",
   },
   container: {
-    flex: 1,
+    height: "100%",
     overflow: "hidden",
     position: "relative",
+    width: "100%",
   },
   secondaryContainer: {
     position: "absolute",
