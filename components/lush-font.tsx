@@ -19,6 +19,5 @@ export function LushFont(props: TextProps) {
 const styles = StyleSheet.create({
   defaultFont: {
     fontWeight: "bold",
-    textDecorationLine: "underline",
   },
 });

@@ -15,6 +15,8 @@ export interface StoreState {
   setFilteredProducts: (filter: string) => void;
   searchWord: string | undefined;
   setSearchWord: (searchWord: string | undefined) => void;
+  hasResults: boolean;
+  setHasResults: (hasResults: boolean) => void;
 }
 
 export const useStore = create<StoreState>((set, get) => ({
@@ -27,8 +29,8 @@ export const useStore = create<StoreState>((set, get) => ({
   setCategories: (categories: string[]) => set(() => ({ categories })),
   filteredProducts: undefined,
   setFilteredProducts: (filter: string) =>
-    set((state: StoreState) => ({
-      filteredProducts:
+    set((state: StoreState) => {
+      const filtered =
         state.products?.filter(
           (product) =>
             product.name?.toLowerCase().includes(filter.toLowerCase()) ||
@@ -36,8 +38,15 @@ export const useStore = create<StoreState>((set, get) => ({
               cat.toLowerCase().includes(filter.toLowerCase()),
             ) ||
             product.description?.toLowerCase().includes(filter.toLowerCase()),
-        ) || [],
-    })),
+        ) || [];
+
+      return {
+        filteredProducts: filtered,
+        hasResults: filtered.length > 0,
+      };
+    }),
+  hasResults: true,
+  setHasResults: (hasResults: boolean) => set(() => ({ hasResults })),
 }));
 
 export interface PersistStoreState {

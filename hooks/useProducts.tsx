@@ -16,6 +16,8 @@ export default function useProducts() {
   );
   const searchWord = useStore((state: StoreState) => state.searchWord);
   const setSearchWord = useStore((state: StoreState) => state.setSearchWord);
+  const hasResults = useStore((state: StoreState) => state.hasResults);
+  const setHasResults = useStore((state: StoreState) => state.setHasResults);
 
   useEffect(() => {
     const getCategories = () => {
@@ -34,6 +36,14 @@ export default function useProducts() {
     getCategories();
   }, [products, setCategories]);
 
+  useEffect(() => {
+    if (filteredProducts && filteredProducts?.length > 0) {
+      setHasResults(true);
+    } else {
+      setHasResults(false);
+    }
+  }, [filteredProducts, setHasResults, products]);
+
   return {
     products:
       filteredProducts && filteredProducts?.length > 0
@@ -41,8 +51,11 @@ export default function useProducts() {
         : products,
     setProducts,
     categories,
+    filteredProducts,
     setFilteredProducts,
     searchWord,
     setSearchWord,
+    hasResults,
+    setHasResults,
   };
 }

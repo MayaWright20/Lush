@@ -14,13 +14,15 @@ import LogoBtn from "./buttons/logo-btn";
 import { LushFont } from "./lush-font";
 
 export default function Header() {
-  const { setFilteredProducts, searchWord, setSearchWord } = useProducts();
+  const { setFilteredProducts, searchWord, setSearchWord, setHasResults } =
+    useProducts();
   const { userName } = useProfile();
 
   const onPress = () => {
     setFilteredProducts("");
     router.navigate("/(tabs)");
     setSearchWord(undefined);
+    setHasResults(true);
   };
 
   const onChangeText = (value: string) => {

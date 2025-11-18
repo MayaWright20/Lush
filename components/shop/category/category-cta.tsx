@@ -20,12 +20,13 @@ function CategoryCTA({ category, index }: Props) {
       color !== COLORS.GREY,
   );
   const color = colors[(index + 1) % colors.length];
-  const { setFilteredProducts, setSearchWord } = useProducts();
+  const { setFilteredProducts, setSearchWord, setHasResults } = useProducts();
 
   const onPress = () => {
     HapticFeedBack();
     setSearchWord(undefined);
     setFilteredProducts(category);
+    setHasResults(true);
   };
 
   return (
