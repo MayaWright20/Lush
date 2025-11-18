@@ -1,10 +1,9 @@
 import { router } from "expo-router";
-import React from "react";
+import React, { useCallback } from "react";
 import { Image, StyleSheet, TouchableOpacity } from "react-native";
 
 import { COLORS } from "@/constants/colors";
 import { height, width } from "@/constants/dimensions";
-import useProducts from "@/hooks/useProducts";
 import { Product } from "@/types";
 import { HapticFeedBack } from "@/utils/haptic-feedback";
 
@@ -13,24 +12,34 @@ import { LushFont } from "../lush-font";
 
 import SoldOutLabel from "./sold-out-label";
 
-function ProductItem({ item }: { item: Product }) {
-  const { setSearchWord } = useProducts();
-  const naviateToProduct = () => {
+interface ProductItemProps {
+  item: Product;
+  onPress?: (item: Product) => void;
+}
+
+function ProductItemBase({ item, onPress }: ProductItemProps) {
+  const handlePress = useCallback(() => {
     HapticFeedBack();
-    setSearchWord(undefined);
-    router.push({
-      pathname: "/product/[id]",
-      params: {
-        id: item.slug,
-        product: JSON.stringify(item),
-      },
-    });
-  };
+    if (onPress) {
+      onPress(item);
+    } else {
+      router.push({
+        pathname: "/product/[id]",
+        params: {
+          id: item.slug,
+          product: JSON.stringify(item),
+        },
+      });
+    }
+  }, [item, onPress]);
 
   return (
-    <TouchableOpacity onPress={naviateToProduct} style={styles.container}>
+    <TouchableOpacity onPress={handlePress} style={styles.container}>
       <SoldOutLabel isVisible={!item.isAvailableForPurchase} />
-      <Image src={item.thumbnail && item.thumbnail.url} style={styles.image} />
+      <Image
+        source={item.thumbnail?.url ? { uri: item.thumbnail.url } : undefined}
+        style={styles.image}
+      />
       <LinearBackground
         colors={["white", COLORS.YELLOW]}
         style={styles.wrapper}
@@ -43,7 +52,16 @@ function ProductItem({ item }: { item: Product }) {
   );
 }
 
-export default React.memo(ProductItem);
+const ProductItem = React.memo(
+  ProductItemBase,
+  (prev, next) =>
+    prev.item.id === next.item.id &&
+    prev.item.isAvailableForPurchase === next.item.isAvailableForPurchase &&
+    prev.item.name === next.item.name &&
+    prev.onPress === next.onPress,
+);
+
+export default ProductItem;
 
 const styles = StyleSheet.create({
   container: {

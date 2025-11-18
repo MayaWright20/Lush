@@ -1,4 +1,5 @@
-import React, { useCallback } from "react";
+import { router } from "expo-router";
+import React, { useCallback, useMemo } from "react";
 import { FlatList, ListRenderItem } from "react-native";
 
 import { height } from "@/constants/dimensions";
@@ -8,12 +9,29 @@ import ProductItem from "./product-item";
 
 interface Props {
   products?: Product[];
+  clearSearch?: () => void;
 }
 
-export default function Shop({ products }: Props) {
+export default function Shop({ products, clearSearch }: Props) {
+  const data = products ?? [];
+
+  const handleItemPress = useCallback(
+    (item: Product) => {
+      clearSearch?.();
+      router.push({
+        pathname: "/product/[id]",
+        params: {
+          id: item.slug,
+          product: JSON.stringify(item),
+        },
+      });
+    },
+    [clearSearch],
+  );
+
   const renderItem: ListRenderItem<Product> = useCallback(
-    ({ item }) => <ProductItem item={item} />,
-    [],
+    ({ item }) => <ProductItem item={item} onPress={handleItemPress} />,
+    [handleItemPress],
   );
 
   const keyExtractor = useCallback(
@@ -21,25 +39,28 @@ export default function Shop({ products }: Props) {
     [],
   );
 
-  const ITEM_HEIGHT = height / 3.5 + 10;
+  const ITEM_HEIGHT = useMemo(() => height / 3.5 + 30, []);
 
   const getItemLayout = useCallback(
-    (data: ArrayLike<Product> | null | undefined, index: number) => ({
-      length: ITEM_HEIGHT,
-      offset: ITEM_HEIGHT * Math.floor(index / 2),
-      index,
-    }),
+    (_: ArrayLike<Product> | null | undefined, index: number) => {
+      const row = Math.floor(index / 2);
+      return {
+        length: ITEM_HEIGHT,
+        offset: ITEM_HEIGHT * row,
+        index,
+      };
+    },
     [ITEM_HEIGHT],
   );
 
   return (
     <FlatList
       numColumns={2}
-      data={products || []}
+      data={data}
       renderItem={renderItem}
       keyExtractor={keyExtractor}
       getItemLayout={getItemLayout}
-      removeClippedSubviews={true}
+      removeClippedSubviews
       maxToRenderPerBatch={10}
       windowSize={10}
       initialNumToRender={6}
