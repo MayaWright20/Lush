@@ -48,8 +48,8 @@ export default React.memo(ProductItem);
 const styles = StyleSheet.create({
   container: {
     height: height / 3.5,
-    margin: 5,
-    marginVertical: 5,
+    marginHorizontal: 5,
+    marginVertical: 15,
     width: width / 2.1,
   },
   image: {
