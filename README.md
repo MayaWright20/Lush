@@ -18,7 +18,7 @@ This is an [Expo](https://expo.dev) project created with [`create-expo-app`](htt
 
 ## Assumptions
 
-I've assumed isAvalibale being false means sold out. 
+I've assumed isAvailable being false means sold out. 
 
 ## Things to note
 
