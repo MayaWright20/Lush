@@ -1,5 +1,6 @@
 import Ionicons from "@expo/vector-icons/Ionicons";
 import { useMemo } from "react";
+import { Pressable } from "react-native";
 
 import { PersistStoreState, usePersistStore } from "@/store/store";
 import { HapticFeedBack } from "@/utils/haptic-feedback";
@@ -33,11 +34,12 @@ export default function FavouriteIcon({ id }: Props) {
   };
 
   return (
-    <Ionicons
-      name={isFavourited ? "heart-sharp" : "heart-outline"}
-      color={isFavourited ? "red" : "black"}
-      size={34}
-      onPress={onPress}
-    />
+    <Pressable onPress={onPress} android_ripple={{ color: "transparent" }}>
+      <Ionicons
+        name={isFavourited ? "heart-sharp" : "heart-outline"}
+        color={isFavourited ? "red" : "black"}
+        size={34}
+      />
+    </Pressable>
   );
 }
