@@ -2,6 +2,7 @@ import Ionicons from "@expo/vector-icons/Ionicons";
 import { useMemo } from "react";
 
 import { PersistStoreState, usePersistStore } from "@/store/store";
+import { HapticFeedBack } from "@/utils/haptic-feedback";
 
 interface Props {
   isFavourited?: boolean;
@@ -26,12 +27,17 @@ export default function FavouriteIcon({ id }: Props) {
     [favourites, id, userName],
   );
 
+  const onPress = () => {
+    HapticFeedBack();
+    toggleIsFavourite(id);
+  };
+
   return (
     <Ionicons
       name={isFavourited ? "heart-sharp" : "heart-outline"}
       color={isFavourited ? "red" : "black"}
       size={34}
-      onPress={() => toggleIsFavourite(id)}
+      onPress={onPress}
     />
   );
 }

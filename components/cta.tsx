@@ -11,6 +11,7 @@ import {
   PADDING_HORIZONTAL_BTN,
   PADDING_VERTICAL_BTN,
 } from "@/constants/styles";
+import { HapticFeedBack } from "@/utils/haptic-feedback";
 
 interface Props {
   title: string;
@@ -27,6 +28,10 @@ export default function CTA({
   textStyle,
   isDisabled,
 }: Props) {
+  const onPressHandler = () => {
+    HapticFeedBack();
+    onPress();
+  };
   return (
     <TouchableOpacity
       style={[
@@ -38,7 +43,7 @@ export default function CTA({
           borderWidth: isDisabled ? 1 : 0,
         },
       ]}
-      onPress={onPress}
+      onPress={onPressHandler}
       disabled={isDisabled}
     >
       <Text

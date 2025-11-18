@@ -5,6 +5,7 @@ import { Image, StyleSheet, TouchableOpacity } from "react-native";
 import { COLORS } from "@/constants/colors";
 import { height, width } from "@/constants/dimensions";
 import { Product } from "@/types";
+import { HapticFeedBack } from "@/utils/haptic-feedback";
 
 import LinearBackground from "../backgrounds/linear-background";
 import { LushFont } from "../lush-font";
@@ -13,6 +14,7 @@ import SoldOutLabel from "./sold-out-label";
 
 function ProductItem({ item }: { item: Product }) {
   const naviateToProduct = () => {
+    HapticFeedBack();
     router.push({
       pathname: "/product/[id]",
       params: {

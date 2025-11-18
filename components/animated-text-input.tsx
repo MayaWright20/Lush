@@ -13,6 +13,7 @@ import Animated, {
 } from "react-native-reanimated";
 
 import { COLORS } from "@/constants/colors";
+import { HapticFeedBack } from "@/utils/haptic-feedback";
 
 const ANIMATION_DURATION = 600;
 
@@ -116,6 +117,7 @@ export default function AnimatedTextInput({
   const setIsAnimatingHandler = (showAnimation: boolean) => {
     if (showAnimation) {
       inputRef.current?.focus();
+      HapticFeedBack();
     }
     setIsAnimated(showAnimation);
   };

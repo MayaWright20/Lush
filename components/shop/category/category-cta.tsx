@@ -5,6 +5,7 @@ import LinearBackground from "@/components/backgrounds/linear-background";
 import { COLORS } from "@/constants/colors";
 import { width } from "@/constants/dimensions";
 import { StoreState, useStore } from "@/store/store";
+import { HapticFeedBack } from "@/utils/haptic-feedback";
 
 interface Props {
   category: string;
@@ -23,11 +24,13 @@ function CategoryCTA({ category, index }: Props) {
   );
   const color = colors[(index + 1) % colors.length];
 
+  const onPress = () => {
+    HapticFeedBack();
+    setFilteredProducts(category);
+  };
+
   return (
-    <TouchableOpacity
-      style={styles.container}
-      onPress={() => setFilteredProducts(category)}
-    >
+    <TouchableOpacity style={styles.container} onPress={onPress}>
       <LinearBackground
         colors={["white", color]}
         style={styles.linearBackground}
