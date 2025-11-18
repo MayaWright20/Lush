@@ -14,6 +14,8 @@ export default function useProducts() {
   const setFilteredProducts = useStore(
     (state: StoreState) => state.setFilteredProducts,
   );
+  const searchWord = useStore((state: StoreState) => state.searchWord);
+  const setSearchWord = useStore((state: StoreState) => state.setSearchWord);
 
   useEffect(() => {
     const getCategories = () => {
@@ -40,5 +42,7 @@ export default function useProducts() {
     setProducts,
     categories,
     setFilteredProducts,
+    searchWord,
+    setSearchWord,
   };
 }

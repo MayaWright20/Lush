@@ -109,7 +109,7 @@ export default function AnimatedTextInput({
   }));
 
   const onChangeTextHandler = (input: string) => {
-    onChangeText(input.trim());
+    onChangeText(input);
   };
 
   const setIsAnimatingHandler = (showAnimation: boolean) => {
@@ -129,10 +129,17 @@ export default function AnimatedTextInput({
       onBlur();
       setIsAnimatingHandler(false);
     }
+
     if (value?.trim() === "" || value === undefined) {
       setIsAnimatingHandler(false);
     }
   };
+
+  useEffect(() => {
+    if (value?.trim() === "" || value === undefined) {
+      setIsAnimatingHandler(false);
+    }
+  }, [value]);
 
   return (
     <Pressable
@@ -141,7 +148,7 @@ export default function AnimatedTextInput({
     >
       <TextInput
         ref={inputRef}
-        value={value}
+        value={value && value}
         onChangeText={onChangeTextHandler}
         style={[styles.textInput, { color }]}
         autoCapitalize={autoCapitalize}

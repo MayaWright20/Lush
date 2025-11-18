@@ -13,11 +13,16 @@ export interface StoreState {
   setCategories: (categories: string[]) => void;
   filteredProducts?: Product[];
   setFilteredProducts: (filter: string) => void;
+  searchWord: string | undefined;
+  setSearchWord: (searchWord: string | undefined) => void;
 }
 
 export const useStore = create<StoreState>((set, get) => ({
   products: undefined,
   setProducts: (products: Product[]) => set(() => ({ products })),
+  searchWord: undefined,
+  setSearchWord: (searchWord: string | undefined) =>
+    set(() => ({ searchWord })),
   categories: undefined,
   setCategories: (categories: string[]) => set(() => ({ categories })),
   filteredProducts: undefined,

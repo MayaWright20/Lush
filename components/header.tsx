@@ -1,5 +1,5 @@
 import { router, usePathname } from "expo-router";
-import { useMemo, useState } from "react";
+import { useMemo } from "react";
 import { StyleSheet, View } from "react-native";
 import { SafeAreaView } from "react-native-safe-area-context";
 
@@ -14,17 +14,17 @@ import LogoBtn from "./buttons/logo-btn";
 import { LushFont } from "./lush-font";
 
 export default function Header() {
-  const { setFilteredProducts } = useProducts();
+  const { setFilteredProducts, searchWord, setSearchWord } = useProducts();
   const { userName } = useProfile();
 
   const onPress = () => {
     setFilteredProducts("");
     router.navigate("/(tabs)");
+    setSearchWord(undefined);
   };
-  const [search, setSearch] = useState("");
 
   const onChangeText = (value: string) => {
-    setSearch(value);
+    setSearchWord(value);
     setFilteredProducts(value);
   };
 
@@ -52,8 +52,7 @@ export default function Header() {
                 label={"Search"}
                 onChangeText={(value) => onChangeText(value)}
                 color={"black"}
-                value={search}
-                onBlur={() => setSearch("")}
+                value={searchWord && searchWord}
               />
             </>
           ) : (

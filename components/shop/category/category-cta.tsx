@@ -4,7 +4,7 @@ import { StyleSheet, Text, TouchableOpacity } from "react-native";
 import LinearBackground from "@/components/backgrounds/linear-background";
 import { COLORS } from "@/constants/colors";
 import { width } from "@/constants/dimensions";
-import { StoreState, useStore } from "@/store/store";
+import useProducts from "@/hooks/useProducts";
 import { HapticFeedBack } from "@/utils/haptic-feedback";
 
 interface Props {
@@ -13,9 +13,6 @@ interface Props {
 }
 
 function CategoryCTA({ category, index }: Props) {
-  const setFilteredProducts = useStore(
-    (state: StoreState) => state.setFilteredProducts,
-  );
   const colors = Object.values(COLORS).filter(
     (color) =>
       color !== COLORS.OVERLAY_DARK &&
@@ -23,9 +20,11 @@ function CategoryCTA({ category, index }: Props) {
       color !== COLORS.GREY,
   );
   const color = colors[(index + 1) % colors.length];
+  const { setFilteredProducts, setSearchWord } = useProducts();
 
   const onPress = () => {
     HapticFeedBack();
+    setSearchWord(undefined);
     setFilteredProducts(category);
   };
 
