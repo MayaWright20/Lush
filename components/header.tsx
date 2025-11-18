@@ -44,16 +44,18 @@ export default function Header() {
         color2="transparent"
       >
         <SafeAreaView style={styles.safeAreaView}>
-          <LogoBtn fontSize={FONT_SIZE_HEADER} onPress={onPress} />
           {isSearchShown ? (
-            <AnimatedTextInput
-              containerStyle={styles.textInput}
-              label={"Search"}
-              onChangeText={(value) => onChangeText(value)}
-              color={"black"}
-              value={search}
-              onBlur={() => setSearch("")}
-            />
+            <>
+              <LogoBtn fontSize={FONT_SIZE_HEADER} onPress={onPress} />
+              <AnimatedTextInput
+                containerStyle={styles.textInput}
+                label={"Search"}
+                onChangeText={(value) => onChangeText(value)}
+                color={"black"}
+                value={search}
+                onBlur={() => setSearch("")}
+              />
+            </>
           ) : (
             <LushFont style={styles.title}>
               {pathname === "/favourites" ? "Favourites" : `Hey ${userName}!`}
@@ -71,7 +73,9 @@ const styles = StyleSheet.create({
   },
   safeAreaView: {
     flexDirection: "row",
+    justifyContent: "center",
     paddingHorizontal: PADDING_HORIZONTAL_PAGE,
+    // textAlign: "center",
   },
   textInput: {
     flex: 1,
@@ -79,7 +83,7 @@ const styles = StyleSheet.create({
   },
   title: {
     fontSize: 45,
-    marginLeft: 30,
-    textAlign: "center",
+    // marginLeft: 30,
+    // textAlign: "center",
   },
 });
