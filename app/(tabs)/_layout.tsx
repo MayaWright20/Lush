@@ -36,7 +36,7 @@ export default function Layout() {
         name="index"
         options={{
           title: "shop",
-          tabBarIcon: ({ color, focused }) => (
+          tabBarIcon: ({ focused }) => (
             <Ionicons
               name={focused ? "home-sharp" : "home-outline"}
               color={"black"}
@@ -49,10 +49,10 @@ export default function Layout() {
         name="favourites/index"
         options={{
           title: "favourites",
-          tabBarIcon: ({ color, focused }) => (
+          tabBarIcon: ({ focused }) => (
             <Ionicons
               name={focused ? "heart-sharp" : "heart-outline"}
-              color={"black"}
+              color={focused ? "red" : "black"}
               size={24}
             />
           ),
@@ -62,7 +62,7 @@ export default function Layout() {
         name="profile/index"
         options={{
           title: "profile",
-          tabBarIcon: ({ color, focused }) => (
+          tabBarIcon: ({ focused }) => (
             <Ionicons
               name={focused ? "person" : "person-outline"}
               size={24}
