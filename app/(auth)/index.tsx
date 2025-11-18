@@ -56,8 +56,8 @@ export default function Index() {
         contentFit="cover"
         nativeControls={false}
       />
-      <View style={styles.overlay}>
-        <Pressable onPress={navigateToAuth}>
+      <Pressable onPress={navigateToAuth} style={styles.overlay}>
+        <View>
           <Text style={[styles.title, styles.typographyCol]}>LUSH</Text>
           <View style={styles.enterWrapper}>
             <Text style={[styles.label, styles.typographyCol]}>enter</Text>
@@ -73,8 +73,8 @@ export default function Index() {
               );
             })}
           </View>
-        </Pressable>
-      </View>
+        </View>
+      </Pressable>
     </>
   );
 }
