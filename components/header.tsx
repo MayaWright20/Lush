@@ -64,12 +64,7 @@ export default function Header() {
 
   return (
     <View style={styles.headerContainer}>
-      <CheckedBackground
-        isOnlyBorders
-        borderColor={COLORS.BLUE}
-        color1="transparent"
-        color2="transparent"
-      >
+      <CheckedBackground isOnlyBorders borderColor={COLORS.BLUE}>
         <SafeAreaView style={styles.safeAreaView}>
           {isSearchShown ? (
             <>
