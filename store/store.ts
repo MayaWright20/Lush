@@ -153,8 +153,6 @@ export const usePersistStore = create<PersistStoreState>()(
         set({
           sessionToken: null,
           userName: undefined,
-          favourites: {},
-          basket: {},
         });
       },
     }),
