@@ -1,5 +1,12 @@
 import { router, useLocalSearchParams } from "expo-router";
-import { Image, ScrollView, StyleSheet, Text, View } from "react-native";
+import {
+  Image,
+  ScrollView,
+  StyleSheet,
+  Text,
+  useWindowDimensions,
+  View,
+} from "react-native";
 import RenderHtml from "react-native-render-html";
 import { SafeAreaView } from "react-native-safe-area-context";
 
@@ -13,7 +20,73 @@ import { PADDING_HORIZONTAL_PAGE } from "@/constants/styles";
 import { Product as ProductType } from "@/types";
 import { formatPrice } from "@/utils/formatters";
 
+const useStyles = () => {
+  const { width, height } = useWindowDimensions();
+  return StyleSheet.create({
+    categoritesWrapper: {
+      flexDirection: "row",
+      justifyContent: "center",
+    },
+    category: {
+      color: "white",
+      fontSize: height < 500 ? 30 : 20,
+      fontWeight: "bold",
+      marginVertical: 10,
+      textAlign: "center",
+    },
+    container: {
+      flex: 1,
+      paddingHorizontal: PADDING_HORIZONTAL_PAGE,
+      position: "relative",
+    },
+    cta: {
+      alignSelf: "baseline",
+    },
+    ctaWrapper: {
+      flexDirection: "row",
+      justifyContent: "space-between",
+    },
+    description: {
+      color: "white",
+      fontSize: height < 500 ? 25 : 16,
+    },
+    detailsWrapper: {
+      backgroundColor: "black",
+      borderRadius: 15,
+      borderWidth: 1,
+      marginBottom: "20%",
+      marginTop: "-50%",
+      minHeight: "65%",
+      padding: height < 500 ? 20 : 10,
+      paddingBottom: 40,
+      paddingTop: "40%",
+      width: "100%",
+      zIndex: -1,
+    },
+    image: {
+      aspectRatio: 1,
+      width: "100%",
+    },
+    price: {
+      color: "white",
+      fontSize: height < 500 ? 45 : 30,
+      marginBottom: 15,
+      textAlign: "right",
+    },
+    scrollView: {
+      flex: 1,
+    },
+    title: {
+      color: "white",
+      fontSize: height < 500 ? 50 : 40,
+      marginBottom: 15,
+      textAlign: "center",
+    },
+  });
+};
+
 export default function Product() {
+  const styles = useStyles();
   const { product } = useLocalSearchParams<{
     product?: string;
   }>();
@@ -27,7 +100,10 @@ export default function Product() {
 
   return (
     <CheckedBackground isOnlyBorders borderColor={COLORS.BLUE}>
-      <SafeAreaView style={styles.container} edges={["top"]}>
+      <SafeAreaView
+        style={styles.container}
+        edges={["top", "left", "right", "bottom"]}
+      >
         <SoldOutLabel isVisible={!item.isAvailableForPurchase} />
         <ScrollView
           showsVerticalScrollIndicator={false}
@@ -73,65 +149,3 @@ export default function Product() {
     </CheckedBackground>
   );
 }
-
-const styles = StyleSheet.create({
-  categoritesWrapper: {
-    flexDirection: "row",
-    justifyContent: "center",
-  },
-  category: {
-    color: "white",
-    fontSize: 20,
-    fontWeight: "bold",
-    marginVertical: 10,
-    textAlign: "center",
-  },
-  container: {
-    flex: 1,
-    paddingHorizontal: PADDING_HORIZONTAL_PAGE,
-    position: "relative",
-  },
-  cta: {
-    alignSelf: "baseline",
-  },
-  ctaWrapper: {
-    flexDirection: "row",
-    justifyContent: "space-between",
-  },
-  description: {
-    color: "white",
-    fontSize: 16,
-  },
-  detailsWrapper: {
-    backgroundColor: "black",
-    borderRadius: 15,
-    borderWidth: 1,
-    marginBottom: "20%",
-    marginTop: "-50%",
-    minHeight: "65%",
-    padding: 10,
-    paddingBottom: 40,
-    paddingTop: "40%",
-    width: "100%",
-    zIndex: -1,
-  },
-  image: {
-    aspectRatio: 1,
-    width: "100%",
-  },
-  price: {
-    color: "white",
-    fontSize: 30,
-    marginBottom: 15,
-    textAlign: "right",
-  },
-  scrollView: {
-    flex: 1,
-  },
-  title: {
-    color: "white",
-    fontSize: 40,
-    marginBottom: 15,
-    textAlign: "center",
-  },
-});
