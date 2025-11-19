@@ -45,6 +45,7 @@ const useStyles = () => {
     ctaWrapper: {
       flexDirection: "row",
       justifyContent: "space-between",
+      marginTop: height < 500 ? 10 : undefined,
     },
     description: {
       color: "white",
