@@ -37,6 +37,8 @@ Instead of localstate i have used zustand which allows the app to create fake pr
 
 ![Profiles](./assets/images/header.png)
 
-![Products](./assets/images/vertical.png)
+![Shop](./assets/images/vertical.png)
 
 ![Categories](./assets/images/horizontal.png)
+
+![Product](./assets/images/horizontal.png)
