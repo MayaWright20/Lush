@@ -11,6 +11,7 @@ import RenderHtml from "react-native-render-html";
 import { SafeAreaView } from "react-native-safe-area-context";
 
 import CheckedBackground from "@/components/backgrounds/checked-background";
+import BasketCounter from "@/components/basket/basket-counter";
 import CTA from "@/components/buttons/cta";
 import FavouriteIcon from "@/components/favourite-icon";
 import { LushFont } from "@/components/lush-font";
@@ -21,7 +22,7 @@ import { Product as ProductType } from "@/types";
 import { formatPrice } from "@/utils/formatters";
 
 const useStyles = () => {
-  const { width, height } = useWindowDimensions();
+  const { height } = useWindowDimensions();
   return StyleSheet.create({
     categoritesWrapper: {
       flexDirection: "row",
@@ -132,6 +133,10 @@ export default function Product() {
                 </Text>
               ))}
             </View>
+            <BasketCounter
+              productId={item.id}
+              isDisabled={!item.isAvailableForPurchase}
+            />
             {html && (
               <RenderHtml
                 contentWidth={100}

@@ -1,3 +1,5 @@
+import { useMemo } from "react";
+
 import { PersistStoreState, usePersistStore } from "@/store/store";
 
 export default function useProfile() {
@@ -26,6 +28,16 @@ export default function useProfile() {
   const setFavourites = usePersistStore(
     (state: PersistStoreState) => state.setFavourites,
   );
+  const basket = usePersistStore((state: PersistStoreState) => state.basket);
+  const setBasket = usePersistStore(
+    (state: PersistStoreState) => state.setBasket,
+  );
+  const removeFromBasket = usePersistStore(
+    (state: PersistStoreState) => state.removeFromBasket,
+  );
+  const clearBasket = usePersistStore(
+    (state: PersistStoreState) => state.clearBasket,
+  );
 
   const login = () => {
     setSessionToken("This is a fake token!");
@@ -39,7 +51,36 @@ export default function useProfile() {
     clearStore();
   };
 
+  const userBasket = useMemo(() => {
+    return userName ? basket[userName] || {} : {};
+  }, [basket, userName]);
+
+  const totalItems = useMemo(() => {
+    return Object.values(userBasket).reduce(
+      (sum, quantity) => sum + quantity,
+      0,
+    );
+  }, [userBasket]);
+
+  const totalUniqueProducts = useMemo(() => {
+    return Object.keys(userBasket).length;
+  }, [userBasket]);
+
+  const getProductQuantity = (productId: string) => {
+    return userBasket[productId] || 0;
+  };
+
+  const hasProducts = totalItems > 0;
+
   return {
+    basket: userBasket,
+    totalItems,
+    totalUniqueProducts,
+    getProductQuantity,
+    hasProducts,
+    setBasket,
+    removeFromBasket,
+    clearBasket,
     login,
     logout,
     setUserName: setUserNameHandler,
