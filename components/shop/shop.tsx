@@ -39,23 +39,25 @@ export default function Shop({ products, clearSearch }: Props) {
     [],
   );
 
+  const numColumns = useMemo(() => (height < 500 ? 4 : 2), [height]);
   const ITEM_HEIGHT = useMemo(() => height / 3.5 + 30, [height]);
 
   const getItemLayout = useCallback(
     (_: ArrayLike<Product> | null | undefined, index: number) => {
-      const row = Math.floor(index / 2);
+      const row = Math.floor(index / numColumns);
       return {
         length: ITEM_HEIGHT,
         offset: ITEM_HEIGHT * row,
         index,
       };
     },
-    [ITEM_HEIGHT],
+    [ITEM_HEIGHT, numColumns],
   );
 
   return (
     <FlatList
-      numColumns={2}
+      key={`flatlist-${numColumns}`}
+      numColumns={numColumns}
       data={data}
       renderItem={renderItem}
       keyExtractor={keyExtractor}

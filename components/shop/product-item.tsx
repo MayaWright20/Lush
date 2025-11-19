@@ -21,8 +21,45 @@ interface ProductItemProps {
   onPress?: (item: Product) => void;
 }
 
-function ProductItemBase({ item, onPress }: ProductItemProps) {
+const useStyles = () => {
   const { width, height } = useWindowDimensions();
+  return StyleSheet.create({
+    container: {
+      height: height < 500 ? height / 2 : height / 3.5,
+      marginHorizontal: 5,
+      marginVertical: 15,
+      width: height < 500 ? width / 5 : width / 2.1,
+    },
+    image: {
+      aspectRatio: 1,
+      marginTop: -15,
+      width: "100%",
+    },
+    title: {
+      fontSize: height < 500 ? 12 : 14,
+      fontWeight: "bold",
+      textAlign: "center",
+    },
+    wrapper: {
+      backgroundColor: "white",
+      borderRadius: 15,
+      borderWidth: 1,
+      flexGrow: 1,
+      height: "70%",
+      marginTop: "-50%",
+      overflow: "hidden",
+      padding: 10,
+      paddingTop: "50%",
+      position: "relative",
+      top: "0%",
+      width: "98%",
+      zIndex: -1,
+    },
+  });
+};
+
+function ProductItemBase({ item, onPress }: ProductItemProps) {
+  const styles = useStyles();
 
   const handlePress = useCallback(() => {
     HapticFeedBack();
@@ -40,10 +77,7 @@ function ProductItemBase({ item, onPress }: ProductItemProps) {
   }, [item, onPress]);
 
   return (
-    <TouchableOpacity
-      onPress={handlePress}
-      style={[styles.container, { height: height / 3.5, width: width / 2.1 }]}
-    >
+    <TouchableOpacity onPress={handlePress} style={styles.container}>
       <SoldOutLabel isVisible={!item.isAvailableForPurchase} />
       <Image
         source={item.thumbnail?.url ? { uri: item.thumbnail.url } : undefined}
@@ -71,34 +105,3 @@ const ProductItem = React.memo(
 );
 
 export default ProductItem;
-
-const styles = StyleSheet.create({
-  container: {
-    marginHorizontal: 5,
-    marginVertical: 15,
-  },
-  image: {
-    aspectRatio: 1,
-    marginTop: -15,
-    width: "100%",
-  },
-  title: {
-    fontWeight: "bold",
-    textAlign: "center",
-  },
-  wrapper: {
-    backgroundColor: "white",
-    borderRadius: 15,
-    borderWidth: 1,
-    flexGrow: 1,
-    height: "70%",
-    marginTop: "-50%",
-    overflow: "hidden",
-    padding: 10,
-    paddingTop: "50%",
-    position: "relative",
-    top: "0%",
-    width: "98%",
-    zIndex: -1,
-  },
-});

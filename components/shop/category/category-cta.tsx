@@ -15,7 +15,31 @@ interface Props {
   category: string;
   index: number;
 }
+
+const useStyles = () => {
+  const { width, height } = useWindowDimensions();
+  return StyleSheet.create({
+    container: {
+      borderRadius: 15,
+      borderWidth: 1,
+      marginHorizontal: 4,
+      overflow: "hidden",
+      width: height < 500 ? width / 4 : width / 2.2,
+    },
+    linearBackground: {
+      alignItems: "center",
+      height: "100%",
+      justifyContent: "center",
+      width: "100%",
+    },
+    title: {
+      fontWeight: "bold",
+    },
+  });
+};
+
 function CategoryCTA({ category, index }: Props) {
+  const styles = useStyles();
   const colors = Object.values(COLORS).filter(
     (color) =>
       color !== COLORS.OVERLAY_DARK &&
@@ -34,10 +58,7 @@ function CategoryCTA({ category, index }: Props) {
   };
 
   return (
-    <TouchableOpacity
-      style={[styles.container, { width: width / 2.2 }]}
-      onPress={onPress}
-    >
+    <TouchableOpacity style={[styles.container]} onPress={onPress}>
       <LinearBackground
         colors={["white", color]}
         style={styles.linearBackground}
@@ -49,21 +70,3 @@ function CategoryCTA({ category, index }: Props) {
 }
 
 export default React.memo(CategoryCTA);
-
-const styles = StyleSheet.create({
-  container: {
-    borderRadius: 15,
-    borderWidth: 1,
-    marginHorizontal: 4,
-    overflow: "hidden",
-  },
-  linearBackground: {
-    alignItems: "center",
-    height: "100%",
-    justifyContent: "center",
-    width: "100%",
-  },
-  title: {
-    fontWeight: "bold",
-  },
-});
